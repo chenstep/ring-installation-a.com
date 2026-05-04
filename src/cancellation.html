@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cancel Installation - Amazon.com</title>
+    <link rel="stylesheet" href="css/amazon.css">
+</head>
+<body>
+
+<!-- Prototype Navigation -->
+<div class="prototype-banner">⚡ PROTOTYPE — Ring Professional Installation Service</div>
+<div class="prototype-nav">
+    <a href="index.html">1. PDP</a>
+    <a href="cart-upsell.html">2. Upsell</a>
+    <a href="cart.html">3. Cart</a>
+    <a href="checkout.html">4. Checkout</a>
+    <a href="thankyou.html">5. Confirm</a>
+    <a href="orders.html">6. Orders</a>
+    <a href="cancellation.html" class="active">7. Cancel</a>
+</div>
+
+<!-- Amazon Mobile Header -->
+<header class="amazon-header">
+    <div class="amazon-logo-mobile">a<span>mazon</span></div>
+    <input type="text" class="mobile-search" placeholder="🔍 Search Amazon" readonly>
+    <div class="mobile-cart">
+        🛒
+        <span class="mobile-cart-count">0</span>
+    </div>
+</header>
+
+<div class="cancellation-page" id="cancel-flow">
+    <div class="cancel-header">Cancel Installation Service</div>
+
+    <!-- Reason Selection -->
+    <div class="cancel-form">
+        <h3>Why would you like to cancel?</h3>
+        <label class="cancel-reason">
+            <input type="radio" name="cancel-reason" value="self-install">
+            I'll install it myself
+        </label>
+        <label class="cancel-reason">
+            <input type="radio" name="cancel-reason" value="cost">
+            Too expensive
+        </label>
+        <label class="cancel-reason">
+            <input type="radio" name="cancel-reason" value="timing">
+            Scheduling doesn't work for me
+        </label>
+        <label class="cancel-reason">
+            <input type="radio" name="cancel-reason" value="not-needed">
+            No longer need the device
+        </label>
+        <label class="cancel-reason">
+            <input type="radio" name="cancel-reason" value="other">
+            Other reason
+        </label>
+    </div>
+
+    <!-- Warning & Confirmation -->
+    <div class="cancel-confirmation">
+        <div class="cancel-warning">
+            <div class="cancel-warning-title">
+                ⚠️ Before you cancel
+            </div>
+            <div class="cancel-warning-text">
+                • You'll lose your scheduled appointment (Fri, May 9)<br>
+                • Re-booking may have a longer wait time<br>
+                • Full refund of $129.99 within 3-5 business days<br>
+                • Your Ring device order is NOT affected
+            </div>
+        </div>
+
+        <button class="btn-confirm-cancel" id="btn-confirm-cancel">
+            Cancel installation — Refund $129.99
+        </button>
+        <button class="btn-keep-installation" onclick="window.location.href='orders.html'">
+            Keep my installation
+        </button>
+    </div>
+</div>
+
+<!-- Cancellation Success (shown after confirm) -->
+<div class="cancellation-page" id="cancel-success" style="display: none;">
+    <div class="cancel-header">Installation Cancelled</div>
+    
+    <div class="cancel-success" style="display: block;">
+        <div class="cancel-success-icon">✓</div>
+        <h3>Installation cancelled</h3>
+        <p>
+            Your refund of <strong>$129.99</strong> will be processed within 3-5 business days to your Visa ending in 4242.
+        </p>
+        <p style="margin-bottom: 20px;">
+            Your Ring Floodlight Cam order is still on its way — arriving Wednesday, May 7.
+        </p>
+
+        <div style="background: #F7F7F7; border-radius: 8px; padding: 14px; margin: 0 12px 14px; text-align: left;">
+            <div style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">Want to install it yourself?</div>
+            <div style="font-size: 13px; color: #565959; line-height: 1.5;">
+                The Ring Floodlight Cam comes with everything you need for self-installation. We'll include setup instructions with your delivery.
+            </div>
+            <button class="btn-self-install" style="margin-top: 10px;" onclick="window.location.href='index.html'">
+                View self-install guide
+            </button>
+        </div>
+
+        <button class="btn-view-order" onclick="window.location.href='orders.html'" style="width: calc(100% - 24px);">
+            Return to Your Orders
+        </button>
+    </div>
+</div>
+
+<script>
+// Cancel button interaction
+document.getElementById('btn-confirm-cancel').addEventListener('click', function() {
+    document.getElementById('cancel-flow').style.display = 'none';
+    document.getElementById('cancel-success').style.display = 'block';
+});
+</script>
+<script src="js/app.js"></script>
+</body>
+</html>

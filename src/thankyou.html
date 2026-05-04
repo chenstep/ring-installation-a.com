@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Order Confirmation - Amazon.com</title>
+    <link rel="stylesheet" href="css/amazon.css">
+</head>
+<body>
+
+<!-- Prototype Navigation -->
+<div class="prototype-banner">⚡ PROTOTYPE — Ring Professional Installation Service</div>
+<div class="prototype-nav">
+    <a href="index.html">1. PDP</a>
+    <a href="cart-upsell.html">2. Upsell</a>
+    <a href="cart.html">3. Cart</a>
+    <a href="checkout.html">4. Checkout</a>
+    <a href="thankyou.html" class="active">5. Confirm</a>
+    <a href="orders.html">6. Orders</a>
+    <a href="cancellation.html">7. Cancel</a>
+</div>
+
+<!-- Amazon Mobile Header -->
+<header class="amazon-header">
+    <div class="amazon-logo-mobile">a<span>mazon</span></div>
+    <input type="text" class="mobile-search" placeholder="🔍 Search Amazon" readonly>
+    <div class="mobile-cart">
+        🛒
+        <span class="mobile-cart-count">0</span>
+    </div>
+</header>
+
+<div class="thankyou-page">
+
+    <!-- Success Banner -->
+    <div class="thankyou-banner">
+        <div class="thankyou-check">✓</div>
+        <div class="thankyou-title">Order placed, thank you!</div>
+        <div class="thankyou-order-number">Order #112-4839201-7726853</div>
+    </div>
+
+    <!-- Delivery Card -->
+    <div class="delivery-card">
+        <div class="delivery-card-header">
+            <span class="delivery-card-icon">📦</span>
+            <span class="delivery-card-title">Device Delivery</span>
+        </div>
+        <div class="delivery-card-content">
+            Ring Floodlight Cam Wired Pro<br>
+            <span class="delivery-card-date">Arriving Wednesday, May 7</span><br>
+            Shipping to: 1234 Elm Street, Seattle, WA
+        </div>
+    </div>
+
+    <!-- Installation Card -->
+    <div class="delivery-card">
+        <div class="delivery-card-header">
+            <span class="delivery-card-icon">🔧</span>
+            <span class="delivery-card-title">Professional Installation</span>
+        </div>
+        <div class="delivery-card-content">
+            <span class="delivery-card-date">Estimated: Friday, May 9 – Sunday, May 11</span><br>
+            A technician will contact you after delivery to confirm the appointment.<br><br>
+            <strong>What's included:</strong><br>
+            • Camera mounting & wiring<br>
+            • Wi-Fi setup & Ring app configuration<br>
+            • Motion zone optimization<br>
+            • Backed by Happiness Guarantee
+        </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="next-steps">
+        <h3>What happens next</h3>
+        <ol>
+            <li><strong>Device ships</strong> — Track in Your Orders</li>
+            <li><strong>Device delivered</strong> — Technician is notified</li>
+            <li><strong>Installation scheduled</strong> — You'll get a text/email to confirm date & time</li>
+            <li><strong>Technician arrives</strong> — Installs, configures, tests your camera</li>
+            <li><strong>You're all set!</strong> — Camera is live and working</li>
+        </ol>
+    </div>
+
+    <!-- View Order Button -->
+    <button class="btn-view-order" onclick="window.location.href='orders.html'">
+        View order details
+    </button>
+
+    <div style="padding: 12px; text-align: center; font-size: 12px; color: #565959;">
+        A confirmation email has been sent to j***@email.com
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

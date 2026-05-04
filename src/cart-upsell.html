@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Added to Cart - Amazon.com</title>
+    <link rel="stylesheet" href="css/amazon.css">
+</head>
+<body>
+
+<!-- Prototype Navigation -->
+<div class="prototype-banner">⚡ PROTOTYPE — Ring Professional Installation Service</div>
+<div class="prototype-nav">
+    <a href="index.html">1. PDP</a>
+    <a href="cart-upsell.html" class="active">2. Upsell</a>
+    <a href="cart.html">3. Cart</a>
+    <a href="checkout.html">4. Checkout</a>
+    <a href="thankyou.html">5. Confirm</a>
+    <a href="orders.html">6. Orders</a>
+    <a href="cancellation.html">7. Cancel</a>
+</div>
+
+<!-- Amazon Mobile Header -->
+<header class="amazon-header">
+    <div class="amazon-logo-mobile">a<span>mazon</span></div>
+    <input type="text" class="mobile-search" placeholder="🔍 Search Amazon" readonly>
+    <div class="mobile-cart">
+        🛒
+        <span class="mobile-cart-count">1</span>
+    </div>
+</header>
+
+<!-- Added to Cart Banner -->
+<div class="upsell-page">
+    <div class="added-to-cart-banner">
+        <div class="added-check">✓</div>
+        <div class="added-text">Added to Cart</div>
+    </div>
+
+    <!-- Upsell Card: Installation Service -->
+    <div class="upsell-card">
+        <div class="upsell-card-header">
+            📋 Recommended for your Ring Floodlight Cam
+        </div>
+        <div class="upsell-card-body">
+            <div class="upsell-card-title">Professional Installation</div>
+            <div class="upsell-card-price">$129.99</div>
+            <div class="upsell-card-social-proof">
+                "Totally worth it — installer was professional and had it working in 30 minutes." ★★★★★
+            </div>
+            <div class="upsell-card-features">
+                <div class="feature-item"><span class="feature-check">✓</span> Expert outdoor camera mounting & wiring</div>
+                <div class="feature-item"><span class="feature-check">✓</span> Wi-Fi connection & Ring app setup</div>
+                <div class="feature-item"><span class="feature-check">✓</span> Motion zone configuration & testing</div>
+                <div class="feature-item"><span class="feature-check">✓</span> Existing fixture removal included</div>
+                <div class="feature-item"><span class="feature-check">✓</span> Backed by Amazon's Happiness Guarantee</div>
+            </div>
+
+            <button class="btn-add-installation" onclick="window.location.href='cart.html'">
+                Add Installation — $129.99
+            </button>
+            <button class="btn-no-thanks" onclick="window.location.href='cart.html?no-install=1'">
+                No thanks, continue to Cart
+            </button>
+        </div>
+    </div>
+
+    <!-- Why customers add installation -->
+    <div style="padding: 12px; font-size: 12px; color: #565959; text-align: center;">
+        <strong>67% of Ring Floodlight Cam buyers</strong> add professional installation
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Checkout - Amazon.com</title>
+    <link rel="stylesheet" href="css/amazon.css">
+</head>
+<body>
+
+<!-- Prototype Navigation -->
+<div class="prototype-banner">⚡ PROTOTYPE — Ring Professional Installation Service</div>
+<div class="prototype-nav">
+    <a href="index.html">1. PDP</a>
+    <a href="cart-upsell.html">2. Upsell</a>
+    <a href="cart.html">3. Cart</a>
+    <a href="checkout.html" class="active">4. Checkout</a>
+    <a href="thankyou.html">5. Confirm</a>
+    <a href="orders.html">6. Orders</a>
+    <a href="cancellation.html">7. Cancel</a>
+</div>
+
+<!-- Amazon Mobile Header -->
+<header class="amazon-header">
+    <div class="amazon-logo-mobile">a<span>mazon</span></div>
+    <input type="text" class="mobile-search" placeholder="🔍 Search Amazon" readonly>
+    <div class="mobile-cart">
+        🛒
+        <span class="mobile-cart-count">2</span>
+    </div>
+</header>
+
+<div class="checkout-page">
+
+    <!-- Shipping Address -->
+    <div class="checkout-section">
+        <div class="checkout-section-title">
+            <span>1</span> Shipping address
+        </div>
+        <div class="checkout-address">
+            <strong>John Smith</strong><br>
+            1234 Elm Street<br>
+            Seattle, WA 98101<br>
+            United States
+        </div>
+        <div class="checkout-change-link"><a href="#">Change</a></div>
+    </div>
+
+    <!-- Payment Method -->
+    <div class="checkout-section">
+        <div class="checkout-section-title">
+            <span>2</span> Payment method
+        </div>
+        <div class="checkout-section-content">
+            💳 Visa ending in 4242<br>
+            <span style="font-size: 12px; color: #565959;">Billing address: Same as shipping</span>
+        </div>
+        <div class="checkout-change-link"><a href="#">Change</a></div>
+    </div>
+
+    <!-- Delivery & Installation -->
+    <div class="checkout-section">
+        <div class="checkout-section-title">
+            <span>3</span> Delivery & Installation
+        </div>
+        
+        <!-- Device Delivery -->
+        <div class="checkout-section-content">
+            <strong>📦 Ring Floodlight Cam Wired Pro</strong><br>
+            <span style="color: #067D62; font-weight: 600;">Arriving Wednesday, May 7</span><br>
+            FREE Same-Day delivery available
+        </div>
+
+        <!-- Installation Scheduling -->
+        <div class="scheduling-section">
+            <div class="scheduling-title">🔧 Professional Installation</div>
+            <div class="scheduling-note">
+                Your installation will be scheduled after your device is delivered. A technician will contact you to confirm the date & time.
+            </div>
+            <div style="font-size: 13px; margin-top: 8px;">
+                <strong>Preferred installation window:</strong>
+            </div>
+            <select class="scheduling-select">
+                <option>Within 3 days of delivery (recommended)</option>
+                <option>Within 1 week of delivery</option>
+                <option>Specific date — I'll choose later</option>
+            </select>
+            <div style="font-size: 11px; color: #565959; margin-top: 6px;">
+                💡 Most installations are completed within 2-3 days of device delivery
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary-section">
+        <div class="checkout-section-title">Order Summary</div>
+        
+        <div class="order-summary-item">
+            <span>Ring Floodlight Cam Wired Pro</span>
+            <span>$199.99</span>
+        </div>
+        <div class="order-summary-item">
+            <span>Professional Installation</span>
+            <span>$129.99</span>
+        </div>
+        <div class="order-summary-item">
+            <span>Shipping & handling</span>
+            <span>$0.00</span>
+        </div>
+        <div class="order-summary-item">
+            <span>Estimated tax</span>
+            <span>$33.00</span>
+        </div>
+        <div class="order-summary-total">
+            <span>Order total:</span>
+            <span>$362.98</span>
+        </div>
+
+        <button class="btn-place-order" onclick="window.location.href='thankyou.html'">
+            Place your order
+        </button>
+        <div class="order-disclaimer">
+            By placing your order, you agree to Amazon's Conditions of Use and Privacy Notice.
+        </div>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
