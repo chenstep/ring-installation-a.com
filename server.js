@@ -7,15 +7,18 @@ const PORT = 3000;
 const SRC_DIR = path.join(__dirname, 'src');
 
 const MIME_TYPES = {
-    '.html': 'text/html',
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-    '.json': 'application/json',
+    '.html': 'text/html; charset=utf-8',
+    '.css': 'text/css; charset=utf-8',
+    '.js': 'application/javascript; charset=utf-8',
+    '.json': 'application/json; charset=utf-8',
     '.png': 'image/png',
     '.jpg': 'image/jpeg',
     '.gif': 'image/gif',
     '.svg': 'image/svg+xml',
-    '.ico': 'image/x-icon'
+    '.ico': 'image/x-icon',
+    '.ttf': 'font/ttf',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2'
 };
 
 const server = http.createServer((req, res) => {
@@ -39,7 +42,25 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(PORT, () => {
+// Keep server alive - handle errors gracefully
+server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.log(`  ⚠️  Port ${PORT} already in use. Server may already be running.`);
+    } else {
+        console.error('Server error:', err);
+    }
+});
+
+// Prevent process from exiting on uncaught errors
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught exception (server still running):', err.message);
+});
+
+process.on('unhandledRejection', (err) => {
+    console.error('Unhandled rejection (server still running):', err);
+});
+
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`\n  🚀 Prototype server running!\n`);
     console.log(`  Local:   http://localhost:${PORT}`);
     console.log(`  Network: http://0.0.0.0:${PORT}\n`);
