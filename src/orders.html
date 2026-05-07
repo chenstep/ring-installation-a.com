@@ -1,107 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Your Orders - Amazon.com</title>
-    <link rel="stylesheet" href="css/amazon.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2, minimum-scale=1, shrink-to-fit=no">
+<title>Your Orders - Amazon.com</title>
+<link rel="stylesheet" href="css/amazon.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
 
-<!-- Prototype Navigation -->
-<div class="prototype-banner">⚡ PROTOTYPE — Ring Professional Installation Service</div>
-<div class="prototype-nav">
-    <a href="index.html">1. PDP</a>
-    <a href="cart-upsell.html">2. Upsell</a>
-    <a href="cart.html">3. Cart</a>
-    <a href="checkout.html">4. Checkout</a>
-    <a href="thankyou.html">5. Confirm</a>
-    <a href="orders.html" class="active">6. Orders</a>
-    <a href="cancellation.html">7. Cancel</a>
+<div id="header-host"></div>
+
+<h1 class="orders-title">Your Orders</h1>
+
+<div class="orders-filter-row">
+    <input type="text" class="orders-search" placeholder="Search all orders">
+    <button class="orders-filter">Filter <span style="font-size:13px;">&rsaquo;</span></button>
 </div>
 
-<!-- Amazon Mobile Header -->
-<header class="amazon-header">
-    <div class="amazon-logo-mobile">a<span>mazon</span></div>
-    <input type="text" class="mobile-search" placeholder="🔍 Search Amazon" readonly>
-    <div class="mobile-cart">
-        🛒
-        <span class="mobile-cart-count">0</span>
+
+<section class="orders-card">
+    <h3>Your savings this year <span style="font-size:22px;">🎁</span></h3>
+    <div class="orders-savings">
+        <div class="orders-savings-pill"><b>$206</b> with Prime</div>
+        <div class="orders-savings-pill"><b>16</b> hours saved</div>
     </div>
-</header>
+</section>
 
-<div class="orders-page">
-    <div class="orders-header">Your Orders</div>
-
-    <!-- Order Card -->
-    <div class="order-card">
-        <div class="order-card-header">
-            <span class="order-card-date">Ordered May 4, 2026</span>
-            <span class="order-card-number">#112-4839201-7726853</span>
-        </div>
-
-        <!-- Device Status -->
-        <div class="status-tracker">
-            <div class="status-tracker-label">
-                📦 Ring Floodlight Cam Wired Pro
-            </div>
-            <div class="status-bar">
-                <div class="status-bar-fill" style="width: 60%;"></div>
-            </div>
-            <div class="status-text">Out for delivery — Arriving today by 8 PM</div>
-        </div>
-
-        <!-- Installation Status Card -->
-        <div class="installation-status-card">
-            <div class="installation-status-title">
-                🔧 Professional Installation
-            </div>
-            <div class="installation-status-details">
-                <div class="detail-row">
-                    <span>Status:</span>
-                    <span style="color: #067D62; font-weight: 600;">Scheduled</span>
-                </div>
-                <div class="detail-row">
-                    <span>Date:</span>
-                    <span><strong>Friday, May 9</strong></span>
-                </div>
-                <div class="detail-row">
-                    <span>Time:</span>
-                    <span><strong>10:00 AM – 12:00 PM</strong></span>
-                </div>
-                <div class="detail-row">
-                    <span>Technician:</span>
-                    <span>Mike R. (Amazon Pro)</span>
-                </div>
-                <div class="detail-row">
-                    <span>Service:</span>
-                    <span>Camera mount, wire, setup</span>
-                </div>
-            </div>
-            <div class="installation-status-actions">
-                <button class="btn-reschedule">Reschedule</button>
-                <button class="btn-cancel-installation" onclick="window.location.href='cancellation.html'">Cancel</button>
-            </div>
-        </div>
-
-        <!-- Order items summary -->
-        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #F0F2F2; font-size: 13px; color: #565959;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                <span>Ring Floodlight Cam Wired Pro</span>
-                <span>$199.99</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                <span>Professional Installation</span>
-                <span>$129.99</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-weight: 700; padding-top: 6px; border-top: 1px solid #F0F2F2;">
-                <span>Order Total</span>
-                <span>$362.98</span>
-            </div>
-        </div>
+<section class="orders-card">
+    <h3>Buy again <a href="#">See more</a></h3>
+    <div style="display:flex; gap:12px; overflow-x:auto;">
+        <div style="flex:0 0 90px;"><div style="width:90px;height:90px;background:#f2f2f2;border-radius:8px;"></div></div>
+        <div style="flex:0 0 90px;"><div style="width:90px;height:90px;background:#f2f2f2;border-radius:8px;"></div></div>
+        <div style="flex:0 0 90px;"><div style="width:90px;height:90px;background:#f2f2f2;border-radius:8px;"></div></div>
+        <div style="flex:0 0 90px;"><div style="width:90px;height:90px;background:#f2f2f2;border-radius:8px;"></div></div>
     </div>
-</div>
+</section>
 
-<script src="js/app.js"></script>
+<section class="orders-card">
+    <h3>Purchase history <span style="font-size:13px; color:var(--c-text-secondary); font-weight:400;">Past three months</span></h3>
+
+    <a href="order-details.html?item=install" class="purchase-history-card">
+        <img src="assets/hellotech-logo.png" alt="HelloTech">
+        <div>
+            <div class="ph-name" id="orders-install-name">Professional Installation by HelloTech (1 Camera)</div>
+            <div class="ph-sub">Scheduling sent by e-mail once order ships</div>
+        </div>
+    </a>
+
+    <a href="order-details.html?item=device" class="purchase-history-card">
+        <img src="images/ring-product-hero.jpg" alt="Ring Floodlight">
+        <div>
+            <div class="ph-name" id="orders-device-name">Ring Floodlight Cam Pro</div>
+            <div class="ph-sub">Arriving May 7, 2026</div>
+        </div>
+    </a>
+</section>
+
+<div style="padding: 60px 14px;"></div>
+
+<script src="js/shared.js"></script>
+<script>
+(function () {
+    Ring.renderHeader('#header-host', { cartCount: 0 });
+    var state = Ring.readState();
+    var sizeLabels = {1:'1 Camera',2:'2 Cameras',3:'3 Cameras'};
+    var packLabel = {1:'', 2:' (2-Pack)', 3:' (3-Pack)'}[state.device.size] || '';
+    var el = document.getElementById('orders-install-name');
+    if (el) el.textContent = 'Professional Installation by HelloTech (' + (sizeLabels[state.install.cameras || state.device.size] || '1 Camera') + ')';
+    var devEl = document.getElementById('orders-device-name');
+    if (devEl) devEl.textContent = 'Ring Floodlight Cam Pro' + packLabel;
+})();
+</script>
 </body>
 </html>

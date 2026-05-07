@@ -1,76 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Added to Cart - Amazon.com</title>
-    <link rel="stylesheet" href="css/amazon.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2, minimum-scale=1, shrink-to-fit=no">
+<title>Add to Cart - Amazon.com</title>
+<link rel="stylesheet" href="css/amazon.css">
+<link rel="stylesheet" href="css/pages.css">
+<style>
+html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.atc-page {
+    background: transparent;
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 414px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+/* Semi-transparent scrim — 30% of viewport, see-through veil */
+.atc-scrim {
+    height: 30vh;
+    flex-shrink: 0;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 0 14px 12px 14px;
+}
+.atc-close-btn {
+    font-size: 22px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 6px;
+}
+
+/* Bottom sheet (white card area) — takes remaining 70% */
+.atc-sheet {
+    background: #fff;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Added confirmation bar */
+.atc-added-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #f0f2f2;
+    height: 58px;
+}
+.atc-added-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    flex: 0 0 48px;
+    border-radius: 4px;
+}
+.atc-added-check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+}
+.atc-added-check svg { flex: 0 0 18px; }
+.atc-added-text {
+    font-size: 16px;
+    color: var(--c-in-stock);
+}
+.atc-go-to-cart {
+    padding: 4px 48px;
+    background: var(--c-btn-yellow);
+    border: 0.67px solid var(--c-btn-yellow);
+    border-radius: var(--r-pill);
+    font-size: 16px;
+    color: var(--c-text);
+    text-decoration: none;
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* Upsell sections */
+.atc-section {
+    padding: 16px 14px;
+    border-bottom: 1px solid #e7e7e7;
+}
+.atc-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 14px;
+}
+.atc-product-card {
+    display: flex;
+    gap: 14px;
+}
+.atc-card-media {
+    flex: 0 0 130px;
+}
+.atc-card-media img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    display: block;
+    background: #f0f2f2;
+    border-radius: 8px;
+    padding: 10px;
+}
+.atc-card-info {
+    flex: 1;
+    min-width: 0;
+}
+.atc-card-title {
+    font-size: 14px;
+    color: #007185;
+    line-height: 18px;
+    display: block;
+    margin-bottom: 6px;
+    text-decoration: none;
+}
+.atc-card-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 2px;
+}
+.atc-card-meta {
+    font-size: 14px;
+    color: var(--c-text);
+    margin-bottom: 12px;
+    font-weight: 400;
+}
+.atc-card-rating {
+    font-size: 13px;
+    color: var(--c-text);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.atc-card-rating .stars {
+    color: #de7921;
+    letter-spacing: -1px;
+}
+.atc-card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 75%;
+    height: 32px;
+    background: var(--c-btn-yellow);
+    border: 0.67px solid var(--c-btn-yellow);
+    border-radius: var(--r-pill);
+    font-size: 14px;
+    color: var(--c-text);
+    text-align: center;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+.atc-card-btn.added {
+    background: #fff;
+    border-color: #0b7b3c;
+    color: #0b7b3c;
+    pointer-events: none;
+}
+
+/* PDP background iframe — centered behind overlay */
+.atc-bg-frame {
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 414px;
+    height: 100%;
+    border: none;
+    z-index: 0;
+    pointer-events: none;
+}
+</style>
 </head>
 <body>
 
-<!-- Prototype Navigation -->
-<div class="prototype-banner">⚡ PROTOTYPE — Ring Professional Installation Service</div>
-<div class="prototype-nav">
-    <a href="index.html">1. PDP</a>
-    <a href="cart-upsell.html" class="active">2. Upsell</a>
-    <a href="cart.html">3. Cart</a>
-    <a href="checkout.html">4. Checkout</a>
-    <a href="thankyou.html">5. Confirm</a>
-    <a href="orders.html">6. Orders</a>
-    <a href="cancellation.html">7. Cancel</a>
+<!-- PDP page visible behind the scrim, scrolled to where user was -->
+<iframe class="atc-bg-frame" id="pdp-bg" src="index.html" tabindex="-1" aria-hidden="true"></iframe>
+
+<div class="atc-page">
+<!-- Semi-transparent scrim with X at bottom-right -->
+<div class="atc-scrim">
+    <button class="atc-close-btn" id="atc-close" aria-label="Close">&#10005;</button>
 </div>
 
-<!-- Amazon Mobile Header -->
-<header class="amazon-header">
-    <div class="amazon-logo-mobile">a<span>mazon</span></div>
-    <input type="text" class="mobile-search" placeholder="🔍 Search Amazon" readonly>
-    <div class="mobile-cart">
-        🛒
-        <span class="mobile-cart-count">1</span>
-    </div>
-</header>
-
-<!-- Added to Cart Banner -->
-<div class="upsell-page">
-    <div class="added-to-cart-banner">
-        <div class="added-check">✓</div>
-        <div class="added-text">Added to Cart</div>
-    </div>
-
-    <!-- Upsell Card: Installation Service -->
-    <div class="upsell-card">
-        <div class="upsell-card-header">
-            📋 Recommended for your Ring Floodlight Cam
+<!-- Bottom sheet -->
+<div class="atc-sheet">
+    <!-- Grey "Added" confirmation bar -->
+    <div class="atc-added-bar">
+        <img src="images/ring-product-hero-gray.jpg" alt="Ring Floodlight Cam Pro" class="atc-added-thumb">
+        <div class="atc-added-check">
+            <svg width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#0b7b3c"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="atc-added-text">Added</span>
         </div>
-        <div class="upsell-card-body">
-            <div class="upsell-card-title">Professional Installation</div>
-            <div class="upsell-card-price">$129.99</div>
-            <div class="upsell-card-social-proof">
-                "Totally worth it — installer was professional and had it working in 30 minutes." ★★★★★
-            </div>
-            <div class="upsell-card-features">
-                <div class="feature-item"><span class="feature-check">✓</span> Expert outdoor camera mounting & wiring</div>
-                <div class="feature-item"><span class="feature-check">✓</span> Wi-Fi connection & Ring app setup</div>
-                <div class="feature-item"><span class="feature-check">✓</span> Motion zone configuration & testing</div>
-                <div class="feature-item"><span class="feature-check">✓</span> Existing fixture removal included</div>
-                <div class="feature-item"><span class="feature-check">✓</span> Backed by Amazon's Happiness Guarantee</div>
-            </div>
-
-            <button class="btn-add-installation" onclick="window.location.href='cart.html'">
-                Add Installation — $129.99
-            </button>
-            <button class="btn-no-thanks" onclick="window.location.href='cart.html?no-install=1'">
-                No thanks, continue to Cart
-            </button>
-        </div>
+        <a href="cart.html" class="atc-go-to-cart">Go to Cart</a>
     </div>
 
-    <!-- Why customers add installation -->
-    <div style="padding: 12px; font-size: 12px; color: #565959; text-align: center;">
-        <strong>67% of Ring Floodlight Cam buyers</strong> add professional installation
+    <!-- Upsell: Add Professional Installation -->
+    <div class="atc-section">
+        <h2 class="atc-section-title">Add Professional Installation</h2>
+        <div class="atc-product-card">
+            <div class="atc-card-media">
+                <img src="assets/hellotech-logo.png" alt="HelloTech">
+            </div>
+            <div class="atc-card-info">
+                <a class="atc-card-title" href="#" id="upsell-install-title">Professional Installation by HelloTech (1 Camera)</a>
+                <div class="atc-card-rating">4.4 <span class="stars">★★★★☆</span> 128</div>
+                <div class="atc-card-price" id="upsell-price-display">$129.00</div>
+                <div class="atc-card-meta">E-mail delivery</div>
+                <button class="atc-card-btn" id="btn-add-install">Add to cart</button>
+            </div>
+        </div>
     </div>
 </div>
+</div>
 
-<script src="js/app.js"></script>
+<script src="js/shared.js"></script>
+<script>
+// Scroll the background PDP iframe to where the user was
+(function() {
+    var frame = document.getElementById('pdp-bg');
+    frame.addEventListener('load', function() {
+        try {
+            var savedY = parseInt(sessionStorage.getItem('ring.pdp.scrollY') || '0', 10);
+            if (savedY > 0) {
+                frame.contentWindow.scrollTo(0, savedY);
+            } else {
+                var btn = frame.contentDocument.getElementById('btn-add-to-cart');
+                if (btn) {
+                    var top = btn.getBoundingClientRect().top + frame.contentWindow.scrollY - 100;
+                    frame.contentWindow.scrollTo(0, top);
+                }
+            }
+        } catch(e) {}
+    });
+})();
+
+(function () {
+    const state = Ring.readState();
+    const sizeLabels = {1:'1 Camera',2:'2 Cameras',3:'3 Cameras'};
+    const installCameras = state.install.cameras || state.device.size;
+    const sizeLabel = sizeLabels[installCameras] || '1 Camera';
+    const installPrice = Ring.CONST.install.sizePrice[installCameras] || 129;
+    const priceStr = Ring.fmt(installPrice);
+
+    var upsellTitle = document.getElementById('upsell-install-title');
+    if (upsellTitle) upsellTitle.textContent = 'Professional Installation by HelloTech (' + sizeLabel + ')';
+    var upsellPriceEl = document.getElementById('upsell-price-display');
+    if (upsellPriceEl) upsellPriceEl.textContent = priceStr;
+
+    document.getElementById('atc-close').addEventListener('click', function () {
+        state.install.selected = false;
+        Ring.writeState(state);
+        window.history.back();
+    });
+
+    document.getElementById('btn-add-install').addEventListener('click', function () {
+        state.install.selected = true;
+        state.install.cameras = installCameras;
+        state.install.price = installPrice;
+        Ring.writeState(state);
+
+        var btn = this;
+        btn.classList.add('added');
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#0b7b3c"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Added';
+
+        setTimeout(function() {
+            window.location.href = 'cart.html';
+        }, 1200);
+    });
+})();
+</script>
 </body>
 </html>

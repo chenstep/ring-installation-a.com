@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2, minimum-scale=1, shrink-to-fit=no">
+<title>Order Details</title>
+<link rel="stylesheet" href="css/amazon.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<!-- Amazon header (matches PDP) -->
+<header class="amz-header">
+    <div class="amz-header-top">
+        <div class="amz-hamburger" aria-label="Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="amz-logo-prime">
+            <svg width="80" height="24" viewBox="0 0 602 182" xmlns="http://www.w3.org/2000/svg" aria-label="amazon">
+                <path fill="#fff" d="M373.642 141.938c-34.999 25.797-85.729 39.561-129.406 39.561-61.243 0-116.377-22.651-158.088-60.325-3.277-2.963-.341-7.005 3.592-4.699 45.014 26.191 100.673 41.947 158.166 41.947 38.775 0 81.429-8.022 120.698-24.674 5.926-2.516 10.882 3.879 5.038 8.19"/>
+                <path fill="#FF9900" d="M386.998 126.79c-4.464-5.72-29.572-2.705-40.846-1.363-3.434.419-3.959-2.569-.865-4.719 20.003-14.078 52.827-10.015 56.655-5.296 3.828 4.745-.996 37.648-19.794 53.352-2.884 2.412-5.638 1.127-4.359-2.074 4.228-10.565 13.673-34.18 9.209-39.9"/>
+                <path fill="#fff" d="M347.077 20.895V6.787c0-2.145 1.624-3.579 3.579-3.579h63.327c2.033 0 3.658 1.467 3.658 3.579v12.089c-.024 2.057-1.757 4.745-4.825 9.005l-32.8 46.833c12.186-.298 25.065 1.519 36.13 7.762 2.495 1.41 3.171 3.482 3.362 5.527v15.046c0 2.074-2.289 4.494-4.699 3.242-19.634-10.293-45.721-11.418-67.419.109-2.214 1.188-4.527-1.191-4.527-3.266v-14.294c0-2.316.024-6.268 3.194-9.785l38.003-54.528h-33.078c-2.033 0-3.658-1.443-3.658-3.555l-.447.028zM124.679 105.669h-19.254c-1.84-.133-3.306-1.519-3.434-3.29V6.97c0-1.982 1.649-3.555 3.688-3.555h17.94c1.865.085 3.355 1.519 3.482 3.326v13.517h.35c4.669-12.961 13.44-18.993 25.239-18.993 12.001 0 19.502 6.032 24.888 18.993 4.645-12.961 15.2-18.993 26.499-18.993 8.044 0 16.833 3.326 22.198 10.791 6.064 8.298 4.825 20.363 4.825 30.928l-.024 59.248c0 1.982-1.649 3.579-3.688 3.579h-19.23c-1.916-.133-3.458-1.673-3.458-3.579V52.484c0-4.159.35-14.545-.541-18.488-1.443-6.632-5.77-8.503-11.367-8.503-4.669 0-9.56 3.133-11.554 8.131-1.994 4.997-1.808 13.332-1.808 18.86v49.748c0 1.982-1.649 3.579-3.688 3.579h-19.23c-1.94-.133-3.458-1.673-3.458-3.579l-.024-49.748c0-11.012 1.808-27.207-11.908-27.207-13.877 0-13.341 15.807-13.341 27.207v49.748c0 1.982-1.649 3.579-3.688 3.579l.127-.133zM469.15 1.265c28.607 0 44.089 24.562 44.089 55.788 0 30.159-17.104 54.105-44.089 54.105-28.044 0-43.29-24.562-43.29-55.172 0-30.777 15.414-54.721 43.29-54.721zm.159 20.183c-14.193 0-15.08 19.347-15.08 31.397 0 12.074-.175 37.853 14.921 37.853 14.921 0 15.632-20.794 15.632-33.46 0-8.346-.35-18.315-2.845-26.231-2.145-6.868-6.411-9.559-12.628-9.559zM547.076 105.669h-19.182c-1.916-.133-3.458-1.673-3.458-3.579l-.024-92.098c.163-1.84 1.757-3.278 3.688-3.278h17.855c1.68.085 3.068 1.263 3.411 2.844v14.082h.35c5.345-12.769 12.846-18.801 26.032-18.801 8.62 0 17.021 3.133 22.41 11.583 5.014 7.856 5.014 21.079 5.014 30.56v55.447c-.211 1.757-1.757 3.145-3.688 3.145h-19.326c-1.808-.133-3.29-1.443-3.458-3.145V51.125c0-10.755 1.252-26.503-12.099-26.503-4.699 0-9.024 3.157-11.162 7.952-2.712 6.064-3.068 12.074-3.068 18.552v51.082c-.024 1.982-1.697 3.579-3.737 3.579l.442-.118zM298.327 59.788c0 7.489.19 13.738-3.594 20.399-3.068 5.418-7.952 8.751-13.341 8.751-7.401 0-11.746-5.637-11.746-13.957 0-16.404 14.697-19.395 28.681-19.395v4.202zm19.443 47.014c-1.275 1.133-3.117 1.215-4.551.46-6.4-5.317-7.544-7.783-11.047-12.846-10.562 10.779-18.065 14.003-31.756 14.003-16.219 0-28.824-10.015-28.824-30.054 0-15.66 8.477-26.32 20.561-31.527 10.466-4.602 25.089-5.418 36.268-6.7v-2.495c0-4.578.35-10.015-2.344-13.98-2.344-3.555-6.837-5.014-10.806-5.014-7.342 0-13.877 3.764-15.48 11.565-.328 1.735-1.601 3.439-3.347 3.527l-18.695-2.016c-1.577-.35-3.326-1.624-2.878-4.03C247.309 8.434 270.42 1.265 291.24 1.265c10.649 0 24.562 2.833 32.951 10.907 10.649 9.966 9.634 23.269 9.634 37.741v34.181c0 10.28 4.265 14.78 8.28 20.339 1.41 1.982 1.721 4.367-.109 5.845-4.578 3.828-12.722 10.942-17.196 14.941l-.03-.417zM55.285 59.788c0 7.489.19 13.738-3.594 20.399-3.068 5.418-7.929 8.751-13.341 8.751-7.401 0-11.722-5.637-11.722-13.957 0-16.404 14.697-19.395 28.657-19.395v4.202zm19.443 47.014c-1.275 1.133-3.117 1.215-4.551.46-6.4-5.317-7.544-7.783-11.047-12.846-10.562 10.779-18.041 14.003-31.756 14.003C11.155 108.419-1.45 98.404-1.45 78.365c0-15.66 8.501-26.32 20.585-31.527 10.466-4.602 25.065-5.418 36.244-6.7v-2.495c0-4.578.35-10.015-2.344-13.98-2.32-3.555-6.813-5.014-10.782-5.014-7.342 0-13.901 3.764-15.504 11.565-.328 1.735-1.601 3.439-3.347 3.527L4.707 31.725c-1.577-.35-3.326-1.624-2.878-4.03C7.767 8.434 30.878 1.265 51.698 1.265c10.649 0 24.562 2.833 32.951 10.907 10.649 9.966 9.634 23.269 9.634 37.741v34.181c0 10.28 4.265 14.78 8.28 20.339 1.41 1.982 1.721 4.367-.109 5.845-4.578 3.828-12.722 10.942-17.196 14.941l-.03-.417-.5.986z"/>
+            </svg>
+            <span class="amz-prime-sub">prime</span>
+        </div>
+        <div class="amz-header-right">
+            <span class="amz-account"><b>Harry</b> ›</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-label="Account"><circle cx="12" cy="8.5" r="4" stroke="#fff" stroke-width="1.6"/><path d="M4 20.5c0-4.2 4-6.5 8-6.5s8 2.3 8 6.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <div class="amz-cart-wrapper" aria-label="Cart">
+                <svg width="30" height="28" viewBox="0 0 36 32" fill="none">
+                    <path d="M2 2l4 4h24v14H10" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 20l-2-8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+                    <circle cx="13" cy="26" r="2.2" fill="#fff"/>
+                    <circle cx="26" cy="26" r="2.2" fill="#fff"/>
+                </svg>
+                <span class="amz-cart-badge">1</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="amz-search">
+        <div class="amz-search-pill">
+            <input type="text" placeholder="Search Amazon" aria-label="Search">
+            <button class="magnifier" aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#232f3e" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="#232f3e" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="amz-deliver">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Deliver to Harry - Hogwarts 00000
+        <span style="margin-left:auto">⌵</span>
+    </div>
+</header>
+
+<!-- Back nav -->
+<div class="od-back-nav">
+    <a href="orders.html" class="od-back-link">
+        <svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2L2 8l6 6"/></svg>
+        <h4>Your Orders</h4>
+    </a>
+</div>
+
+<!-- Card deck -->
+<div class="od-deck">
+
+    <!-- Title card -->
+    <div class="od-card-ui">
+        <h1 class="od-title">Order details</h1>
+    </div>
+
+    <!-- Tracking card -->
+    <div class="od-card-ui" id="od-tracker-card">
+        <div class="od-tracker-header">
+            <h3 class="od-delivery-heading" id="od-delivery-type">Email delivery</h3>
+            <img id="od-tracker-img" src="images/ring-product-hero.jpg" alt="Ring Floodlight Cam Pro" class="od-tracker-thumb">
+        </div>
+        <ol class="od-progress-tracker" aria-label="Order progress milestones">
+            <li class="od-milestone completed" aria-label="Ordered - Completed">
+                <span class="od-milestone-dot"></span>
+                <span class="od-milestone-label">Ordered</span>
+            </li>
+            <li class="od-milestone" aria-label="Shipped - Pending">
+                <span class="od-milestone-dot"></span>
+                <span class="od-milestone-label">Shipped</span>
+            </li>
+            <li class="od-milestone" aria-label="Out for delivery - Pending">
+                <span class="od-milestone-dot"></span>
+                <span class="od-milestone-label">Out for<br>delivery</span>
+            </li>
+            <li class="od-milestone" aria-label="Delivered - Pending">
+                <span class="od-milestone-dot"></span>
+                <span class="od-milestone-label">Delivered</span>
+            </li>
+        </ol>
+        <ul class="od-tracker-actions">
+            <li><a href="#" class="od-tracker-action-link">Update delivery instructions</a></li>
+        </ul>
+    </div>
+
+    <!-- See details (collapsible item card) -->
+    <div class="od-card-ui" id="od-details-card">
+        <button class="od-see-details-btn" aria-expanded="true" id="od-toggle-details">
+            <h5>See details</h5>
+            <span class="od-chevron">›</span>
+        </button>
+        <div class="od-details-content" id="od-details-content">
+            <div class="od-item-row">
+                <a href="index.html" class="od-item-img-link">
+                    <img src="images/ring-product-hero.jpg" alt="Ring Floodlight Cam Pro" class="od-item-thumb">
+                </a>
+                <div class="od-item-info">
+                    <a href="index.html" class="od-item-name" id="od-device-name">Ring Floodlight Cam Pro, Wired (newest model), Home or business security, Retinal 4K with wide-angle video, 10x Enhanced Zoom, and 2000 Lumen Floodlights, White</a>
+                    <div class="od-item-seller">Sold by: <a href="#">Amazon.com</a></div>
+                    <div class="od-item-price">$<span id="od-device-price">279.99</span></div>
+                </div>
+            </div>
+            <ul class="od-action-list">
+                <li><a href="#" class="od-action-pill primary">Problem with order</a></li>
+                <li><a href="#" class="od-action-pill">Cancel items</a></li>
+                <li><a href="#" class="od-action-pill">Write a product review</a></li>
+                <li><a href="#" class="od-action-pill">Buy it again</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Order summary card -->
+    <div class="od-card-ui" id="od-summary-card">
+        <h4 class="od-section-heading">Order summary</h4>
+        <div class="od-order-meta">
+            <div>Order placed <span id="od-order-date">May 4, 2026</span></div>
+            <div>Order # <span id="order-num">112-9644586-3876244</span></div>
+        </div>
+        <ul class="od-summary-list">
+            <li><span>Item(s) Subtotal:</span><span>$<span id="device-sub">0.00</span></span></li>
+            <li><span>Shipping &amp; Handling:</span><span>$0.00</span></li>
+            <li><span>Total before tax:</span><span>$<span id="device-pretax">0.00</span></span></li>
+            <li><span>Estimated tax to be collected:</span><span>$<span id="device-tax">0.00</span></span></li>
+            <li class="od-grand-total"><span>Grand Total:</span><span>$<span id="device-total">0.00</span></span></li>
+        </ul>
+        <a href="invoice.html" class="od-view-invoice" id="invoice-link">View invoice</a>
+    </div>
+
+    <!-- Payment method card -->
+    <div class="od-card-ui" id="od-payment-card">
+        <h4 class="od-section-heading">Payment method</h4>
+        <ul class="od-payment-list">
+            <li><span>Visa</span> <span>ending in 0000</span></li>
+        </ul>
+        <a href="#" class="od-view-transactions">View related transactions</a>
+    </div>
+
+    <!-- Change shipping address -->
+    <div class="od-card-ui">
+        <a href="#" class="od-change-address">Change shipping address</a>
+    </div>
+
+</div>
+
+<!-- Top picks section (placeholder) -->
+<div class="od-card-ui od-recs-section">
+    <h2 class="od-recs-heading">Top picks for you</h2>
+</div>
+
+<!-- Footer -->
+<footer class="amz-footer">
+    <button class="amz-footer-top" onclick="window.scrollTo(0,0)">
+        <span class="amz-footer-top-arrow">▲</span>
+        <span class="amz-footer-top-text">TOP OF PAGE</span>
+    </button>
+    <div class="amz-footer-links">
+        <a href="#">Amazon.com</a>
+        <a href="#">Your Orders</a>
+        <a href="#">AmazonFresh</a>
+        <a href="#">Your Lists</a>
+        <a href="#">Amazon Live</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Registry &amp; Gift List</a>
+        <a href="#">Find a Gift</a>
+        <a href="#">Your Account</a>
+        <a href="#">Your Subscribe &amp; Save</a>
+        <a href="#">Browsing History</a>
+        <a href="#">Sell products on Amazon</a>
+        <a href="#">Your Recommendations</a>
+        <a href="#">Your Returns</a>
+        <a href="#">1-Click Settings</a>
+        <a href="#">Customer Service</a>
+        <a href="#">Recalls and Product Safety Alerts</a>
+        <a href="#">Help</a>
+    </div>
+    <div class="amz-footer-locale">
+        <span class="amz-footer-lang">🌐 English</span>
+        <span class="amz-footer-country">🇺🇸 United States</span>
+    </div>
+    <a href="#" class="amz-footer-switch">Switch Accounts</a>
+    <a href="#" class="amz-footer-signout">Sign Out</a>
+    <div class="amz-footer-legal">
+        <a href="#">Conditions of Use</a>
+        <a href="#">Privacy Notice</a>
+        <a href="#">Consumer Health Data Privacy Disclosure</a>
+        <a href="#">Your Ads Privacy Choices</a>
+    </div>
+    <div class="amz-footer-copyright">© 1996-2026, Amazon.com, Inc. or its affiliates</div>
+</footer>
+
+<script src="js/shared.js"></script>
+<script>
+(function () {
+    try {
+        var state = Ring.readState();
+        var sizeLabels = {1:'1 Camera',2:'2 Cameras',3:'3 Cameras'};
+        var packLabel = {1:'', 2:' (2-Pack)', 3:' (3-Pack)'}[state.device.size] || '';
+        var taxRate = Ring.CONST.taxRate;
+        var params = new URLSearchParams(window.location.search);
+        var item = params.get('item') || 'install';
+
+        // Toggle see details
+        var toggleBtn = document.getElementById('od-toggle-details');
+        var detailsContent = document.getElementById('od-details-content');
+        if (toggleBtn && detailsContent) {
+            toggleBtn.addEventListener('click', function() {
+                var expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !expanded);
+                detailsContent.style.display = expanded ? 'none' : 'block';
+            });
+        }
+
+        if (item === 'device') {
+            document.getElementById('od-delivery-type').textContent = 'Delivery';
+            document.getElementById('order-num').textContent = Ring.CONST.order.number;
+
+            var odDeviceName = document.getElementById('od-device-name');
+            if (odDeviceName) odDeviceName.textContent = 'Ring Floodlight Cam Pro, Wired (newest model)' + packLabel;
+
+            var devicePrice = state.device.unitPrice || 279.99;
+            var deviceQty = Math.max(1, state.device.quantity || 1);
+            var deviceSub = devicePrice * deviceQty;
+            var deviceTax = deviceSub * taxRate;
+            document.getElementById('od-device-price').textContent = devicePrice.toFixed(2);
+            document.getElementById('device-sub').textContent = deviceSub.toFixed(2);
+            document.getElementById('device-pretax').textContent = deviceSub.toFixed(2);
+            document.getElementById('device-tax').textContent = deviceTax.toFixed(2);
+            document.getElementById('device-total').textContent = (deviceSub + deviceTax).toFixed(2);
+        } else {
+            document.getElementById('od-delivery-type').textContent = 'Scheduling';
+            document.getElementById('order-num').textContent = Ring.CONST.order.installNumber;
+            document.getElementById('od-tracker-img').src = 'assets/hellotech-logo.png';
+            document.getElementById('od-tracker-img').alt = 'HelloTech';
+
+            var odName = document.getElementById('od-device-name');
+            if (odName) odName.textContent = 'Professional Installation by HelloTech (' + (sizeLabels[state.install.cameras || state.device.size] || '1 Camera') + ')';
+
+            var itemImg = document.querySelector('.od-item-thumb');
+            if (itemImg) { itemImg.src = 'assets/hellotech-logo.png'; itemImg.alt = 'HelloTech'; }
+
+            var sellerEl = document.querySelector('.od-item-seller');
+            if (sellerEl) sellerEl.innerHTML = 'Sold by: <a href="#">HelloTech, Inc.</a>';
+
+            var installPrice = state.install.price || 129;
+            var installQty = Math.max(1, state.install.quantity || 1);
+            var installSub = installPrice * installQty;
+            var installTax = installSub * taxRate;
+            document.getElementById('od-device-price').textContent = installPrice.toFixed(2);
+            document.getElementById('device-sub').textContent = installSub.toFixed(2);
+            document.getElementById('device-pretax').textContent = installSub.toFixed(2);
+            document.getElementById('device-tax').textContent = installTax.toFixed(2);
+            document.getElementById('device-total').textContent = (installSub + installTax).toFixed(2);
+
+            // Change milestones for scheduling
+            var milestones = document.querySelectorAll('.od-milestone-label');
+            if (milestones.length >= 4) {
+                milestones[0].textContent = 'Ordered';
+                milestones[1].textContent = 'Confirmed';
+                milestones[2].textContent = 'Scheduled';
+                milestones[3].textContent = 'Completed';
+            }
+        }
+
+        var invoiceLink = document.getElementById('invoice-link');
+        if (invoiceLink) invoiceLink.href = 'invoice.html?item=' + item;
+    } catch(e) {
+        console.error('Order details error:', e);
+    }
+})();
+</script>
+</body>
+</html>

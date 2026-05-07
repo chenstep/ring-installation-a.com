@@ -1,96 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Order Confirmation - Amazon.com</title>
-    <link rel="stylesheet" href="css/amazon.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2, minimum-scale=1, shrink-to-fit=no">
+<title>Order placed, thanks! - Amazon.com</title>
+<link rel="stylesheet" href="css/amazon.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
 
-<!-- Prototype Navigation -->
-<div class="prototype-banner">⚡ PROTOTYPE — Ring Professional Installation Service</div>
-<div class="prototype-nav">
-    <a href="index.html">1. PDP</a>
-    <a href="cart-upsell.html">2. Upsell</a>
-    <a href="cart.html">3. Cart</a>
-    <a href="checkout.html">4. Checkout</a>
-    <a href="thankyou.html" class="active">5. Confirm</a>
-    <a href="orders.html">6. Orders</a>
-    <a href="cancellation.html">7. Cancel</a>
+<div id="header-host"></div>
+
+<div class="ty-banner">
+    <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#0b7b3c"/><path d="M7 12l3.5 3.5L17 9" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h1>Order placed, thanks!</h1>
+</div>
+<p class="ty-sub">Confirmation will be sent to your email.</p>
+
+<div class="ty-shipping">
+    <b>Shipping to Harry Potter,</b> 11 Diagon Alley, #11, Hogwarts 00000. Phone number: +1 (800) 555-0100
 </div>
 
-<!-- Amazon Mobile Header -->
-<header class="amazon-header">
-    <div class="amazon-logo-mobile">a<span>mazon</span></div>
-    <input type="text" class="mobile-search" placeholder="🔍 Search Amazon" readonly>
-    <div class="mobile-cart">
-        🛒
-        <span class="mobile-cart-count">0</span>
-    </div>
-</header>
-
-<div class="thankyou-page">
-
-    <!-- Success Banner -->
-    <div class="thankyou-banner">
-        <div class="thankyou-check">✓</div>
-        <div class="thankyou-title">Order placed, thank you!</div>
-        <div class="thankyou-order-number">Order #112-4839201-7726853</div>
-    </div>
-
-    <!-- Delivery Card -->
-    <div class="delivery-card">
-        <div class="delivery-card-header">
-            <span class="delivery-card-icon">📦</span>
-            <span class="delivery-card-title">Device Delivery</span>
-        </div>
-        <div class="delivery-card-content">
-            Ring Floodlight Cam Wired Pro<br>
-            <span class="delivery-card-date">Arriving Wednesday, May 7</span><br>
-            Shipping to: 1234 Elm Street, Seattle, WA
-        </div>
-    </div>
-
-    <!-- Installation Card -->
-    <div class="delivery-card">
-        <div class="delivery-card-header">
-            <span class="delivery-card-icon">🔧</span>
-            <span class="delivery-card-title">Professional Installation</span>
-        </div>
-        <div class="delivery-card-content">
-            <span class="delivery-card-date">Estimated: Friday, May 9 – Sunday, May 11</span><br>
-            A technician will contact you after delivery to confirm the appointment.<br><br>
-            <strong>What's included:</strong><br>
-            • Camera mounting & wiring<br>
-            • Wi-Fi setup & Ring app configuration<br>
-            • Motion zone optimization<br>
-            • Backed by Happiness Guarantee
-        </div>
-    </div>
-
-    <!-- Next Steps -->
-    <div class="next-steps">
-        <h3>What happens next</h3>
-        <ol>
-            <li><strong>Device ships</strong> — Track in Your Orders</li>
-            <li><strong>Device delivered</strong> — Technician is notified</li>
-            <li><strong>Installation scheduled</strong> — You'll get a text/email to confirm date & time</li>
-            <li><strong>Technician arrives</strong> — Installs, configures, tests your camera</li>
-            <li><strong>You're all set!</strong> — Camera is live and working</li>
-        </ol>
-    </div>
-
-    <!-- View Order Button -->
-    <button class="btn-view-order" onclick="window.location.href='orders.html'">
-        View order details
-    </button>
-
-    <div style="padding: 12px; text-align: center; font-size: 12px; color: #565959;">
-        A confirmation email has been sent to j***@email.com
+<div class="ty-order-block" id="device-block">
+    <p id="device-block-text">
+        Your Ring Floodlight Cam Pro will arrive <b>Thu, May 7, 2026</b>. Tracking details will be emailed once your order ships.
+    </p>
+    <div class="ty-order-media">
+        <img src="images/ring-product-hero.jpg" alt="Ring Floodlight Cam Pro">
     </div>
 </div>
 
-<script src="js/app.js"></script>
+<div class="ty-order-block" id="install-block">
+    <p>
+        Scheduling for your Professional Installation will be sent by email once your order ships. Your HelloTech technician will contact you to schedule your appointment.
+    </p>
+    <div class="ty-order-media">
+        <img src="assets/hellotech-logo.png" alt="HelloTech">
+    </div>
+</div>
+
+<div class="ty-review">
+    <a href="orders.html">Review or edit your recent orders</a>
+</div>
+
+<div class="ty-carousel-wrap">
+    <h2 class="ty-carousel-title">Keep shopping for</h2>
+    <div class="ty-grid">
+        <div class="ty-tile"><div class="tt-thumb">Ring Floodlight</div><div class="tt-label">Surveillance &amp; s...</div><div class="tt-meta">4 viewed</div></div>
+        <div class="ty-tile"><div class="tt-thumb">Roku HD</div><div class="tt-label">Streaming medi...</div><div class="tt-meta">1 viewed</div></div>
+        <div class="ty-tile"><div class="tt-thumb">iPad keyboard</div><div class="tt-label">Tablet keyboard...</div><div class="tt-meta">1 viewed</div></div>
+        <div class="ty-tile"><div class="tt-thumb">Balance bike</div><div class="tt-label">Kids' balance bik...</div><div class="tt-meta">1 viewed</div></div>
+        <div class="ty-tile"><div class="tt-thumb">Garage opener</div><div class="tt-label">Garage door key...</div><div class="tt-meta">1 viewed</div></div>
+        <div class="ty-tile"><div class="tt-thumb">Treadmill</div><div class="tt-label">Treadmills</div><div class="tt-meta">1 viewed</div></div>
+    </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+(function () {
+    const state = Ring.readState();
+    Ring.renderHeader('#header-host', { cartCount: 0 });
+    var packLabel = {1:'', 2:' (2-Pack)', 3:' (3-Pack)'}[state.device.size] || '';
+    document.getElementById('device-block-text').innerHTML = '<b>Tomorrow, May 7</b><br><span style="font-weight:400;">Estimated delivery</span>';
+    if (!state.install.selected) {
+        document.getElementById('install-block').style.display = 'none';
+    }
+})();
+</script>
 </body>
 </html>

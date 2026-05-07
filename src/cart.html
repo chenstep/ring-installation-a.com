@@ -1,92 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Shopping Cart - Amazon.com</title>
-    <link rel="stylesheet" href="css/amazon.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2, minimum-scale=1, shrink-to-fit=no">
+<title>Shopping Cart - Amazon.com</title>
+<link rel="stylesheet" href="css/amazon.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
-<body>
+<body class="has-sticky-cta">
 
-<!-- Prototype Navigation -->
-<div class="prototype-banner">⚡ PROTOTYPE — Ring Professional Installation Service</div>
-<div class="prototype-nav">
-    <a href="index.html">1. PDP</a>
-    <a href="cart-upsell.html">2. Upsell</a>
-    <a href="cart.html" class="active">3. Cart</a>
-    <a href="checkout.html">4. Checkout</a>
-    <a href="thankyou.html">5. Confirm</a>
-    <a href="orders.html">6. Orders</a>
-    <a href="cancellation.html">7. Cancel</a>
+<div id="header-host"></div>
+
+<!-- Sub-nav tabs -->
+<div class="cart-tabs">
+    <a href="#" class="active">Cart</a>
+    <a href="#">Lists</a>
+    <a href="#">Buy Again</a>
 </div>
 
-<!-- Amazon Mobile Header -->
-<header class="amazon-header">
-    <div class="amazon-logo-mobile">a<span>mazon</span></div>
-    <input type="text" class="mobile-search" placeholder="🔍 Search Amazon" readonly>
-    <div class="mobile-cart">
-        🛒
-        <span class="mobile-cart-count">2</span>
-    </div>
-</header>
-
-<div class="cart-page">
-    <div class="cart-header-title">Shopping Cart</div>
-
-    <!-- Cart Item 1: Ring Floodlight Cam -->
-    <div class="cart-item">
-        <div class="cart-item-image">
-            📷<br>Ring<br>Floodlight
-        </div>
-        <div class="cart-item-details">
-            <div class="cart-item-title">Ring Floodlight Cam Wired Pro - Bird's Eye View, 3D Motion Detection, HDR Video (2025), Black</div>
-            <div class="cart-item-price">$199.99</div>
-            <div class="cart-item-meta">In Stock · FREE delivery Wed, May 7</div>
-            <div class="cart-item-actions">
-                <a href="#">Delete</a>
-                <span class="divider">|</span>
-                <a href="#">Save for later</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cart Item 2: Installation Service -->
-    <div class="cart-installation-item">
-        <div class="cart-installation-badge">🔧 Professional Service</div>
-        <div class="cart-item-details" style="margin-top: 6px;">
-            <div class="cart-item-title">Professional Installation — Ring Floodlight Cam</div>
-            <div class="cart-item-price">$129.99</div>
-            <div class="cart-item-meta">
-                Amazon Pro · Schedule after device delivery
-            </div>
-            <div class="cart-item-actions">
-                <a href="#">Remove</a>
-                <span class="divider">|</span>
-                <a href="#">Service details</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cart Summary -->
-    <div class="cart-summary">
-        <div class="cart-summary-row">
-            <span>Items (2):</span>
-            <span>$329.98</span>
-        </div>
-        <div class="cart-summary-row">
-            <span>Shipping:</span>
-            <span style="color: #007600;">FREE</span>
-        </div>
-        <div class="cart-summary-row total">
-            <span>Subtotal:</span>
-            <span>$329.98</span>
-        </div>
-        <button class="btn-proceed-checkout" onclick="window.location.href='checkout.html'">
-            Proceed to checkout (2 items)
-        </button>
+<!-- Subtotal at top -->
+<div class="cart-subtotal-top">
+    <div class="cart-subtotal-label">Subtotal
+        <span class="cart-subtotal-amount">$<span id="subtotal-whole">0</span><sup id="subtotal-frac">00</sup></span>
     </div>
 </div>
 
-<script src="js/app.js"></script>
+<!-- Deselect all -->
+<div class="cart-deselect-row">
+    <a href="#">Deselect all items</a>
+</div>
+
+<!-- Items container with grey background -->
+<div class="cart-items-bg">
+    <div id="cart-items"></div>
+</div>
+
+<!-- Floating sticky footer CTA -->
+<div class="cart-sticky-cta">
+    <button class="btn-primary-pill" id="btn-checkout">Proceed to checkout (<span id="co-count">0</span> items)</button>
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+(function () {
+    const state = Ring.readState();
+    Ring.renderHeader('#header-host', { cartCount: state.device.quantity + (state.install.selected ? state.install.quantity : 0) });
+
+    function render() {
+        const totals = Ring.computeTotals(state);
+        const s = Ring.fmtSplit(totals.itemsSubtotal);
+        document.getElementById('subtotal-whole').textContent = s.whole.toLocaleString();
+        document.getElementById('subtotal-frac').textContent = s.frac;
+        document.getElementById('co-count').textContent = totals.itemCount;
+
+        const host = document.getElementById('cart-items');
+        host.innerHTML = '';
+        if (state.device.quantity > 0) host.innerHTML += deviceItemHtml();
+        if (state.install.selected) host.innerHTML += installItemHtml();
+
+        host.querySelectorAll('[data-action="qty-plus"]').forEach(b => b.addEventListener('click', () => changeQty(b.dataset.item, +1)));
+        host.querySelectorAll('[data-action="qty-minus"]').forEach(b => b.addEventListener('click', () => changeQty(b.dataset.item, -1)));
+        host.querySelectorAll('[data-action="delete"]').forEach(b => b.addEventListener('click', () => deleteItem(b.dataset.item)));
+    }
+
+    function deviceItemHtml() {
+        const p = Ring.fmtSplit(state.device.unitPrice);
+        const monthly = (state.device.unitPrice / 5).toFixed(2);
+        const packLabel = {1:'', 2:' (2-Pack)', 3:' (3-Pack)'}[state.device.size] || '';
+        const sizeNum = parseInt(state.device.size) || 1;
+        const perUnit = sizeNum > 1 ? '<div class="cart-item-meta">($' + (state.device.unitPrice / sizeNum).toFixed(2) + ' / count)</div>' : '';
+        return [
+            '<div class="cart-item-card">',
+            '  <div class="cart-item-top-row">',
+            '    <input type="checkbox" class="cart-item-check" checked>',
+            '    <div class="cart-item-media">',
+            '      <img src="' + Ring.CONST.device.image + '" alt="">',
+            '    </div>',
+            '    <div class="cart-item-body">',
+            '      <div class="cart-item-title">Ring Floodlight Cam Pro, Wired (newest model)' + packLabel + ', Home or business security, Reti...</div>',
+            '      <div class="cart-item-meta">2K+ bought in past month</div>',
+            '      <div style="margin:6px 0;"><span class="cart-price-sm">$</span><span class="cart-price">' + p.whole + '<sup>' + p.frac + '</sup></span></div>',
+            perUnit,
+            '      <div class="prime-line"><span class="prime-v">&#10003;</span><span class="prime-word">prime</span></div>',
+            '      <div class="cart-item-meta">FREE delivery <b>Tomorrow</b>, May 7</div>',
+            '      <div class="cart-item-meta">Or $4.99 delivery <b>in 3 hours</b></div>',
+            '      <div class="free-returns-light">FREE Returns</div>',
+            '    </div>',
+            '  </div>',
+            '  <div class="cart-pay-monthly-row"><input type="checkbox"> Pay in <a href="#">5 monthly payments</a> of <span style="color:#0b7b3c;">$' + monthly + '</span></div>',
+            '  <div class="cart-item-actions">',
+            '    <div class="qty-stepper">',
+            (state.device.quantity <= 1
+                ? '      <button class="qty-trash" data-action="delete" data-item="device"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m-8 0v13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7" stroke="#0f1111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+                : '      <button data-action="qty-minus" data-item="device">&minus;</button>'),
+            '      <span class="qty-val">' + state.device.quantity + '</span>',
+            '      <button data-action="qty-plus" data-item="device">+</button>',
+            '    </div>',
+            '    <button class="cart-action-pill" data-action="delete" data-item="device">Delete</button>',
+            '    <button class="cart-action-pill">Save for later</button>',
+            '  </div>',
+            '  <div class="cart-item-actions" style="padding-top:8px;">',
+            '    <button class="cart-action-pill">Compare with similar items</button>',
+            '    <button class="cart-action-pill">Share</button>',
+            '  </div>',
+            '</div>'
+        ].join('');
+    }
+
+    function installItemHtml() {
+        const p = Ring.fmtSplit(state.install.price);
+        return [
+            '<div class="cart-item-card">',
+            '  <div class="cart-item-top-row">',
+            '    <input type="checkbox" class="cart-item-check" checked>',
+            '    <div class="cart-item-media">',
+            '      <img src="' + Ring.CONST.install.logo + '" alt="HelloTech" style="object-fit:contain;padding:12px;">',
+                        '    </div>',
+            '    <div class="cart-item-body">',
+            '      <div class="cart-item-title">Professional Installation by HelloTech (' + ({1:'1 Camera',2:'2 Cameras',3:'3 Cameras'}[state.install.cameras || state.device.size] || '1 Camera') + ')</div>',
+            '      <div style="margin:6px 0;"><span class="cart-price-sm">$</span><span class="cart-price">'+p.whole+'<sup>'+p.frac+'</sup></span></div>',
+            '      <div class="shipped-from">Ships from and sold by <a href="#">HelloTech, Inc.</a></div>',
+            '      <div class="shipped-from"><a href="https://www.hellotech.com/tos" target="_blank" rel="noopener">Terms of Service</a></div>',
+            '    </div>',
+            '  </div>',
+            '  <div class="cart-item-actions">',
+            '    <div class="qty-stepper">',
+            (state.install.quantity <= 1
+                ? '      <button class="qty-trash" data-action="delete" data-item="install"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m-8 0v13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7" stroke="#0f1111" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+                : '      <button data-action="qty-minus" data-item="install">&minus;</button>'),
+            '      <span class="qty-val">' + state.install.quantity + '</span>',
+            '      <button data-action="qty-plus" data-item="install">+</button>',
+            '    </div>',
+            '    <button class="cart-action-pill" data-action="delete" data-item="install">Delete</button>',
+            '    <button class="cart-action-pill">Save for later</button>',
+            '    <button class="cart-action-pill">Share</button>',
+            '  </div>',
+            '</div>'
+        ].join('');
+    }
+
+    function primeTrialHtml() {
+        return [
+            '<div class="cart-prime-trial">',
+            '  <div class="cart-prime-trial-top">',
+            '    <div class="cart-prime-trial-logo"><svg width="58" height="32" viewBox="0 0 70 32"><text x="4" y="20" font-size="20" font-weight="700" font-style="italic" fill="#146eb4" font-family="Arial,sans-serif">prime</text><path d="M5 24 Q20 24 30 28 Q35 29 42 27" stroke="#146eb4" stroke-width="2" fill="none" stroke-linecap="round"/><polygon points="40,25 44,27 40,29" fill="#146eb4"/></svg></div>',
+            '    <div class="cart-prime-trial-text">Get free and faster delivery with a 30-day FREE trial.</div>',
+            '  </div>',
+            '  <button class="cart-prime-trial-btn">Try Prime</button>',
+            '</div>'
+        ].join('');
+    }
+
+    function changeQty(item, delta) {
+        if (item === 'device') state.device.quantity = Math.max(1, state.device.quantity + delta);
+        else if (item === 'install') state.install.quantity = Math.max(1, state.install.quantity + delta);
+        Ring.writeState(state);
+        render();
+    }
+    function deleteItem(item) {
+        if (item === 'device') { state.device.quantity = 0; }
+        else if (item === 'install') { state.install.selected = false; state.install.quantity = 1; }
+        Ring.writeState(state);
+        render();
+    }
+
+    document.getElementById('btn-checkout').addEventListener('click', function () {
+        Ring.writeState(state);
+        window.location.href = 'checkout.html';
+    });
+
+    render();
+})();
+</script>
 </body>
 </html>

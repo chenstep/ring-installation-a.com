@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2, minimum-scale=1, shrink-to-fit=no">
+<title>Order Details</title>
+<link rel="stylesheet" href="css/amazon.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<div class="invoice-main">
+
+    <h1 class="invoice-h1">Order Summary</h1>
+
+    <button class="invoice-print-pill" onclick="window.print()">Print</button>
+
+    <div class="invoice-meta">
+        <span>Order placed</span>
+        <span class="invoice-meta-bold" id="invoice-date">May 4, 2026</span>
+        <span>Order #</span>
+        <span class="invoice-meta-bold" id="order-num">112-9644586-3876244</span>
+    </div>
+
+    <!-- Payment + Order Summary row -->
+    <div class="invoice-deck">
+        <div class="invoice-card">
+            <div class="invoice-two-col">
+                <div class="invoice-col-left">
+                    <h5 class="invoice-card-heading">Payment method</h5>
+                    <div class="invoice-payment-info">
+                        <span>Visa</span> <span>ending in 0000</span>
+                    </div>
+                    <button class="invoice-view-transactions">View related transactions</button>
+                </div>
+                <div class="invoice-col-right">
+                    <h5 class="invoice-card-heading">Order Summary</h5>
+                    <ul class="invoice-summary-list">
+                        <li><span>Item(s) Subtotal:</span><span id="summary-subtotal">$0.00</span></li>
+                        <li><span>Shipping &amp; Handling:</span><span>$0.00</span></li>
+                        <li><span>Total before tax:</span><span id="summary-pretax">$0.00</span></li>
+                        <li><span>Estimated tax to be collected:</span><span id="summary-tax">$0.00</span></li>
+                        <li class="invoice-grand-total"><span>Grand Total:</span><span id="summary-total">$0.00</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item block -->
+    <div class="invoice-deck">
+        <div class="invoice-card">
+            <h3 class="invoice-item-heading" id="invoice-fulfillment-type">Email delivery</h3>
+            <div class="invoice-item-row">
+                <a href="index.html" class="invoice-item-img-link">
+                    <img src="images/ring-product-hero.jpg" alt="Ring Floodlight Cam Pro" class="invoice-item-thumb" id="invoice-item-img">
+                </a>
+                <div class="invoice-item-details">
+                    <a href="index.html" class="invoice-item-name" id="invoice-item-name">Ring Floodlight Cam Pro, Wired (newest model)</a>
+                    <div class="invoice-item-seller">Sold by: <a href="#" id="invoice-seller-link">Amazon.com</a></div>
+                    <div class="invoice-item-supplied" id="invoice-supplied">Supplied by: Other</div>
+                    <div class="invoice-item-price">$<span id="invoice-price">279.99</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="amz-footer">
+    <button class="amz-footer-top" onclick="window.scrollTo(0,0)">
+        <span class="amz-footer-top-arrow">▲</span>
+        <span class="amz-footer-top-text">TOP OF PAGE</span>
+    </button>
+    <div class="amz-footer-links">
+        <a href="#">Your Orders</a>
+        <a href="#">Your Lists</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Find a Gift</a>
+        <a href="#">Your Subscribe &amp; Save</a>
+        <a href="#">Sell products on Amazon</a>
+        <a href="#">Your Returns</a>
+        <a href="#">Customer Service</a>
+        <a href="#">Help</a>
+        <a href="#">Amazon.com</a>
+        <a href="#">AmazonFresh</a>
+        <a href="#">Amazon Live</a>
+        <a href="#">Registry &amp; Gift List</a>
+        <a href="#">Your Account</a>
+        <a href="#">Browsing History</a>
+        <a href="#">Your Recommendations</a>
+        <a href="#">1-Click Settings</a>
+        <a href="#">Recalls and Product Safety Alerts</a>
+    </div>
+    <div class="amz-footer-locale">
+        <span class="amz-footer-lang">🌐 English</span>
+        <span class="amz-footer-country">🇺🇸 United States</span>
+    </div>
+    <a href="#" class="amz-footer-switch">Switch Accounts</a>
+    <a href="#" class="amz-footer-signout">Sign Out</a>
+    <div class="amz-footer-legal">
+        <a href="#">Conditions of Use</a>
+        <a href="#">Privacy Notice</a>
+        <a href="#">Consumer Health Data Privacy Disclosure</a>
+        <a href="#">Your Ads Privacy Choices</a>
+    </div>
+    <div class="amz-footer-copyright">© 1996-2026, Amazon.com, Inc. or its affiliates</div>
+</footer>
+
+<script src="js/shared.js"></script>
+<script>
+(function () {
+    try {
+        var state = Ring.readState();
+        var sizeLabels = {1:'1 Camera',2:'2 Cameras',3:'3 Cameras'};
+        var packLabel = {1:'', 2:' (2-Pack)', 3:' (3-Pack)'}[state.device.size] || '';
+        var taxRate = Ring.CONST.taxRate;
+        var params = new URLSearchParams(window.location.search);
+        var item = params.get('item') || 'install';
+
+        if (item === 'device') {
+            document.getElementById('invoice-fulfillment-type').textContent = 'Delivery';
+            document.getElementById('order-num').textContent = Ring.CONST.order.number;
+            document.getElementById('invoice-item-name').textContent = 'Ring Floodlight Cam Pro, Wired (newest model)' + packLabel;
+            document.getElementById('invoice-supplied').style.display = 'none';
+
+            var devicePrice = state.device.unitPrice || 279.99;
+            var deviceQty = Math.max(1, state.device.quantity || 1);
+            var deviceSub = devicePrice * deviceQty;
+            var deviceTax = deviceSub * taxRate;
+            document.getElementById('invoice-price').textContent = devicePrice.toFixed(2);
+            document.getElementById('summary-subtotal').textContent = '$' + deviceSub.toFixed(2);
+            document.getElementById('summary-pretax').textContent = '$' + deviceSub.toFixed(2);
+            document.getElementById('summary-tax').textContent = '$' + deviceTax.toFixed(2);
+            document.getElementById('summary-total').textContent = '$' + (deviceSub + deviceTax).toFixed(2);
+        } else {
+            document.getElementById('invoice-fulfillment-type').textContent = 'Email delivery';
+            document.getElementById('order-num').textContent = Ring.CONST.order.installNumber;
+            document.getElementById('invoice-item-name').textContent = 'Professional Installation by HelloTech (' + (sizeLabels[state.install.cameras || state.device.size] || '1 Camera') + ')';
+            document.getElementById('invoice-item-img').src = 'assets/hellotech-logo.png';
+            document.getElementById('invoice-item-img').alt = 'HelloTech';
+            document.getElementById('invoice-seller-link').textContent = 'HelloTech, Inc.';
+
+            var installPrice = state.install.price || 129;
+            var installQty = Math.max(1, state.install.quantity || 1);
+            var installSub = installPrice * installQty;
+            var installTax = installSub * taxRate;
+            document.getElementById('invoice-price').textContent = installPrice.toFixed(2);
+            document.getElementById('summary-subtotal').textContent = '$' + installSub.toFixed(2);
+            document.getElementById('summary-pretax').textContent = '$' + installSub.toFixed(2);
+            document.getElementById('summary-tax').textContent = '$' + installTax.toFixed(2);
+            document.getElementById('summary-total').textContent = '$' + (installSub + installTax).toFixed(2);
+        }
+    } catch(e) {
+        console.error('Invoice error:', e);
+    }
+})();
+</script>
+</body>
+</html>

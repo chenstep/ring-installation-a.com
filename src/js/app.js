@@ -1,36 +1,16 @@
 /**
- * Ring Installation Prototype — PDP logic
- *
- * State shape (persisted to localStorage under key "ring.pdp.state"
- * on Add to cart / Buy Now):
- *
- * {
- *   device: { id, name, color, size, unitPrice, quantity },
- *   install: { selected, price, provider }
- * }
+ * PDP logic. Uses Ring shared state module.
  */
-
 (function () {
     'use strict';
 
-    const SIZE_PRICE = { '1': 279.99, '2': 499.99, '3': 779.98 };
+    const SIZE_PRICE = Ring.CONST.device.sizePrice;
+    const INSTALL_SIZE_PRICE = Ring.CONST.install.sizePrice;
     const SIZE_LABEL = { '1': '1 Camera', '2': '2 Cameras', '3': '3 Cameras' };
 
-    const state = {
-        device: {
-            id: 'ring-floodlight-cam-pro-wired',
-            name: 'Ring Floodlight Cam Pro, Wired (newest model)',
-            color: 'White',
-            size: '1',
-            unitPrice: 279.99,
-            quantity: 1
-        },
-        install: {
-            selected: false,
-            price: 129.99,
-            provider: 'Amazon Pro'
-        }
-    };
+    // Always start fresh on PDP (1 camera, no install selected)
+    Ring.clearState();
+    const state = Ring.defaultState();
 
     // ---------- DOM refs ----------
     const priceDisplay = document.getElementById('price-display');
@@ -48,105 +28,175 @@
     const addToCartBtn = document.getElementById('btn-add-to-cart');
     const buyNowBtn = document.getElementById('btn-buy-now');
 
-    // ---------- Render helpers ----------
+    // ---------- render ----------
     function renderPrice(amount) {
-        const whole = Math.floor(amount);
-        const frac = Math.round((amount - whole) * 100).toString().padStart(2, '0');
+        const s = Ring.fmtSplit(amount);
         priceDisplay.innerHTML =
             '<span class="dollar">$</span>' +
-            '<span class="whole">' + whole + '</span>' +
-            '<span class="frac">' + frac + '</span>';
+            '<span class="whole">' + s.whole + '</span>' +
+            '<span class="frac">' + s.frac + '</span>';
     }
 
-    // ---------- Color swatches ----------
-    colorGroup.addEventListener('click', function (e) {
-        const btn = e.target.closest('.color-swatch');
-        if (!btn) return;
-        colorGroup.querySelectorAll('.color-swatch').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        state.device.color = btn.dataset.color;
-        colorLabel.textContent = state.device.color;
-    });
-
-    // ---------- Size tiles ----------
-    sizeGroup.addEventListener('click', function (e) {
-        const tile = e.target.closest('.size-tile');
-        if (!tile) return;
-        sizeGroup.querySelectorAll('.size-tile').forEach(t => t.classList.remove('selected'));
-        tile.classList.add('selected');
-        state.device.size = tile.dataset.size;
-        state.device.unitPrice = SIZE_PRICE[state.device.size];
-        sizeLabel.textContent = SIZE_LABEL[state.device.size];
-        renderPrice(state.device.unitPrice);
-    });
-
-    // ---------- Quantity ----------
-    qtySelect.addEventListener('change', function () {
-        state.device.quantity = qtySelect.selectedIndex + 1;
-    });
-
-    // ---------- Install row checkbox + text tap ----------
     function syncInstallUI() {
         installCheck.checked = state.install.selected;
-        updatePopoverCtaLabel();
+        popoverCta.textContent = 'Add to Order';
     }
-    installCheck.addEventListener('change', function () {
-        state.install.selected = installCheck.checked;
-    });
-    installText.addEventListener('click', function () {
-        state.install.selected = !state.install.selected;
-        syncInstallUI();
-    });
 
-    // ---------- Popover open/close ----------
+    function updateInstallPrice(size, animate) {
+        var newPrice = INSTALL_SIZE_PRICE[size];
+        state.install.price = newPrice;
+        var priceStr = Ring.fmt(newPrice);
+        var sizeStr = SIZE_LABEL[size];
+        var wrap = document.querySelector('.add-items-wrap');
+        if (!wrap) return;
+
+        function applyValues() {
+            var rowPrice = document.querySelector('.add-items-row .row-price');
+            if (rowPrice) rowPrice.textContent = priceStr;
+            var popPrice = document.querySelector('.pop-price');
+            if (popPrice) popPrice.textContent = priceStr;
+            var rowTitle = document.getElementById('install-row-title');
+            if (rowTitle) rowTitle.textContent = 'Professional Installation by HelloTech (' + sizeStr + ')';
+            var popTitle = document.getElementById('pop-title');
+            if (popTitle) popTitle.textContent = 'Professional Installation by HelloTech (' + sizeStr + ')';
+            wrap.classList.remove('loading');
+        }
+
+        if (animate) {
+            wrap.classList.add('loading');
+            setTimeout(applyValues, 600);
+        } else {
+            applyValues();
+        }
+    }
+
+    // ---------- variant selection ----------
+    if (colorGroup) {
+        // restore color
+        colorGroup.querySelectorAll('.color-swatch').forEach(b => {
+            b.classList.toggle('selected', b.dataset.color === state.device.color);
+        });
+        if (colorLabel) colorLabel.textContent = state.device.color;
+
+        colorGroup.addEventListener('click', function (e) {
+            const btn = e.target.closest('.color-swatch');
+            if (!btn) return;
+            colorGroup.querySelectorAll('.color-swatch').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            state.device.color = btn.dataset.color;
+            if (colorLabel) colorLabel.textContent = state.device.color;
+        });
+    }
+
+    if (sizeGroup) {
+        sizeGroup.querySelectorAll('.size-tile').forEach(t => {
+            t.classList.toggle('selected', t.dataset.size === state.device.size);
+        });
+        if (sizeLabel) sizeLabel.textContent = SIZE_LABEL[state.device.size];
+        renderPrice(state.device.unitPrice);
+
+        sizeGroup.addEventListener('click', function (e) {
+            const tile = e.target.closest('.size-tile');
+            if (!tile) return;
+            sizeGroup.querySelectorAll('.size-tile').forEach(t => t.classList.remove('selected'));
+            tile.classList.add('selected');
+            state.device.size = tile.dataset.size;
+            state.device.unitPrice = SIZE_PRICE[state.device.size];
+            state.device.quantity = 1;
+            if (qtySelect) qtySelect.selectedIndex = 0;
+            if (sizeLabel) sizeLabel.textContent = SIZE_LABEL[state.device.size];
+            renderPrice(state.device.unitPrice);
+            // Default install cameras to match device size (user can override in popover)
+            state.install.cameras = state.device.size;
+            updateInstallPrice(state.device.size, true);
+        });
+    }
+
+    if (qtySelect) {
+        qtySelect.selectedIndex = Math.max(0, state.device.quantity - 1);
+        qtySelect.addEventListener('change', function () {
+            state.device.quantity = qtySelect.selectedIndex + 1;
+            state.install.quantity = state.device.quantity;
+        });
+    }
+
+    // ---------- install row ----------
+    if (installCheck) {
+        installCheck.addEventListener('change', function () {
+            state.install.selected = installCheck.checked;
+        });
+    }
+    // ---------- popover ----------
+    function syncPopoverTiles() {
+        var currentInstallSize = state.install.cameras || state.device.size;
+        var tiles = popover.querySelectorAll('.popover-tile');
+        tiles.forEach(function(t) {
+            var isSelected = t.dataset.size === currentInstallSize;
+            t.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+        });
+    }
+
     function openPopover() {
         popover.classList.add('open');
         popover.setAttribute('aria-hidden', 'false');
         document.body.classList.add('popover-open');
-        updatePopoverCtaLabel();
+        syncInstallUI();
+        syncPopoverTiles();
     }
     function closePopover() {
         popover.classList.remove('open');
         popover.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('popover-open');
     }
-    function updatePopoverCtaLabel() {
-        popoverCta.textContent = state.install.selected ? 'Update' : 'Add to Order';
+    // Tapping the text area or chevron opens the popover (not the checkbox area)
+    if (installText) {
+        installText.addEventListener('click', function () {
+            openPopover();
+        });
     }
-
-    installChev.addEventListener('click', function (e) {
-        e.stopPropagation();
-        openPopover();
-    });
-    popoverCancel.addEventListener('click', closePopover);
-    popoverCta.addEventListener('click', function () {
+    if (installChev) installChev.addEventListener('click', function (e) { e.stopPropagation(); openPopover(); });
+    if (popoverCancel) popoverCancel.addEventListener('click', closePopover);
+    if (popoverCta) popoverCta.addEventListener('click', function () {
         state.install.selected = true;
         syncInstallUI();
         closePopover();
     });
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && popover.classList.contains('open')) {
-            closePopover();
-        }
-    });
 
-    // ---------- Add to cart / Buy Now ----------
-    function persistAndGo(nextUrl) {
-        try {
-            localStorage.setItem('ring.pdp.state', JSON.stringify(state));
-        } catch (err) {
-            // localStorage unavailable — continue anyway in prototype
-        }
-        window.location.href = nextUrl;
+    // Tile selection within popover — only changes install camera count, NOT device size
+    var tileGroup = popover ? popover.querySelector('.popover-tile-group') : null;
+    if (tileGroup) {
+        tileGroup.addEventListener('click', function (e) {
+            var tile = e.target.closest('.popover-tile');
+            if (!tile) return;
+            var newInstallSize = tile.dataset.size;
+            if (newInstallSize === (state.install.cameras || state.device.size)) return;
+
+            state.install.cameras = newInstallSize;
+            updateInstallPrice(newInstallSize, false);
+            syncPopoverTiles();
+        });
     }
-    addToCartBtn.addEventListener('click', function () {
-        persistAndGo('cart-upsell.html');
-    });
-    buyNowBtn.addEventListener('click', function () {
-        persistAndGo('cart.html');
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && popover && popover.classList.contains('open')) closePopover();
     });
 
-    // ---------- Initial render ----------
-    renderPrice(state.device.unitPrice);
+    // ---------- add to cart / buy now ----------
+    function persistAndGo(url) {
+        Ring.writeState(state);
+        sessionStorage.setItem('ring.pdp.scrollY', window.scrollY);
+        window.location.href = url;
+    }
+    if (addToCartBtn) addToCartBtn.addEventListener('click', function () {
+        // If install already selected → skip upsell, go to cart
+        // If not selected → show cart-upsell for a chance to add it
+        persistAndGo(state.install.selected ? 'cart.html' : 'cart-upsell.html');
+    });
+    if (buyNowBtn) buyNowBtn.addEventListener('click', function () {
+        persistAndGo('checkout.html');
+    });
+
+    // initial sync
+    if (!state.install.cameras) state.install.cameras = state.device.size;
     syncInstallUI();
+    updateInstallPrice(state.install.cameras);
 })();

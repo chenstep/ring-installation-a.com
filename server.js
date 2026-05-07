@@ -22,7 +22,8 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-    let filePath = path.join(SRC_DIR, req.url === '/' ? 'index.html' : req.url);
+    const urlPath = req.url.split('?')[0];
+    let filePath = path.join(SRC_DIR, urlPath === '/' ? 'index.html' : urlPath);
     const ext = path.extname(filePath);
     const contentType = MIME_TYPES[ext] || 'text/plain';
 

@@ -28,7 +28,7 @@
     --c-muted: #888c8c;
     --c-link: #2162a1;
     --c-link-bright: #1c89e3;
-    --c-stars: #ffb14a;
+    --c-stars: #de7921;
     --c-in-stock: #0b7b3c;
     --c-price-red: #c10015;
     --c-deal-red: #cc0c39;
@@ -55,7 +55,7 @@
     --shadow-popover: 0 0 14px rgba(15,17,17,0.5);
 
     /* radii */
-    --r-pill: 24px;
+    --r-pill: 100px;
     --r-card: 8px;
     --r-info: 5px;
 }
@@ -65,9 +65,9 @@
 html { -webkit-text-size-adjust: 100%; }
 
 body {
-    font-family: "Amazon Ember Modern Text", "Amazon Ember", Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
+    font-family: "Amazon Ember", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
     color: var(--c-text);
     background: #fff;
     max-width: 100%;
@@ -92,10 +92,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    1. HEADER (dark navy top bar)
    ============================================================ */
-.amz-header { background: var(--c-header-bg); position: sticky; top: 0; z-index: 100; }
+.amz-header { background: var(--c-header-bg); position: relative; z-index: 100; }
 .amz-header-top {
     display: flex; align-items: center; gap: 14px;
-    padding: 12px 14px 8px;
+    padding: 8px 14px 4px;
 }
 .amz-hamburger { display: inline-flex; align-items: center; }
 .amz-logo-prime {
@@ -108,10 +108,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .amz-logo-prime svg { display: block; }
 .amz-prime-sub {
     position: absolute;
-    left: 62px;   /* horizontal offset to sit under "zon" */
-    bottom: -4px; /* vertical offset just under the wordmark */
-    color: #2986cc;
-    font-size: 11px;
+    left: 52px;
+    bottom: -2px;
+    color: #999;
+    font-size: 10px;
     font-weight: 400;
     letter-spacing: .2px;
     line-height: 1;
@@ -122,44 +122,45 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .amz-cart-wrapper { position: relative; display: inline-flex; align-items: center; }
 .amz-cart-badge {
     position: absolute;
-    top: -2px;
-    right: 8px;
-    color: var(--c-orange-accent);
-    font-size: 13px;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f08804;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1;
     pointer-events: none;
 }
 
 /* ---------- Search row ---------- */
-.amz-search { padding: 6px 10px 10px; background: var(--c-header-bg); }
+.amz-search { padding: 4px 10px 6px; background: var(--c-header-bg); }
 .amz-search-pill {
     display: flex; align-items: center;
     background: #fff;
-    border: 2px solid var(--c-search-border);
-    border-radius: var(--r-pill);
+    border: none;
+    border-radius: 8px 12px 12px 8px;
     overflow: hidden;
+    height: 44px;
 }
 .amz-search-pill input {
     flex: 1; border: 0; outline: 0;
-    font-size: 14px; padding: 9px 12px;
+    font-size: 15px; padding: 9px 12px;
     background: transparent; color: var(--c-text);
-}
-.amz-search-pill .clear-x {
-    font-size: 18px; color: var(--c-muted); padding: 0 10px; background: transparent; border: 0;
+    height: 100%;
 }
 .amz-search-pill .magnifier {
     background: var(--c-search-border);
-    padding: 10px 14px;
+    width: 50px;
     display: flex; align-items: center; justify-content: center;
     height: 100%;
-    border-left: 1px solid #e0a84a;
+    border-radius: 8px;
 }
 
 /* ---------- Deliver-to strip ---------- */
 .amz-deliver {
-    background: var(--c-deliver-bar); color: #fff; font-size: 13px;
+    background: var(--c-deliver-bar); color: #fff; font-size: 12px;
     padding: 8px 14px;
+    height: 44px;
     display: flex; align-items: center; gap: 6px;
 }
 
@@ -167,7 +168,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .ring-store-link {
     display: block;
     padding: 10px 14px;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--c-link);
 }
 
@@ -175,18 +176,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    3. PRODUCT TITLE / RATING / BADGE
    ============================================================ */
 .pdp-title {
-    font-size: 15px; line-height: 1.4; font-weight: 400;
-    color: #0F1111;
+    font-size: 14px; line-height: 18px; font-weight: 400;
+    color: #565959;
     padding: 0 14px;
 }
 .pdp-rating-row {
     display: flex; align-items: center; gap: 6px;
     padding: 8px 14px 4px;
-    font-size: 14px;
+    font-size: 13px;
     color: #0F1111;
 }
-.pdp-rating-row .stars { color: var(--c-stars); letter-spacing: 1px; font-size: 15px; }
-.pdp-rating-row .count { color: var(--c-link); }
+.pdp-rating-row .stars { color: var(--c-stars); letter-spacing: -1px; font-size: 13px; }
+.pdp-rating-row .count { color: var(--c-link); font-size: 14px; }
 .pdp-choice {
     display: inline-block;
     background: #232f3e;
@@ -200,7 +201,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .pdp-social {
     padding: 14px 14px 6px;
-    font-size: 15px;
+    font-size: 14px;
     color: #0F1111;
 }
 .pdp-social strong { font-weight: 700; }
@@ -221,7 +222,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .pdp-carousel::-webkit-scrollbar { display: none; }
 .pdp-carousel { scrollbar-width: none; }
 .pdp-slide {
-    flex: 0 0 calc(100% - 24px);
+    flex: 0 0 calc(100% - 50px);
     max-width: 432px;
     scroll-snap-align: start;
     border-radius: var(--r-card);
@@ -301,7 +302,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     line-height: 1.2;
 }
 .alexa-card .alexa-body {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     color: #0F1111;
     line-height: 1.3;
@@ -316,32 +317,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    ============================================================ */
 .pdp-price {
     padding: 12px 14px 4px;
-    display: flex;
-    align-items: flex-start;
-    gap: 1px;
     color: #0F1111;
-    line-height: 1;
+    font-size: 38px;
+    line-height: normal;
 }
-.pdp-price .dollar {
-    font-size: 15px;
-    font-weight: 400;
-    margin-top: 3px;
-}
-.pdp-price .whole {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: .95;
-}
+.pdp-price .dollar,
 .pdp-price .frac {
     font-size: 15px;
     font-weight: 400;
-    margin-top: 3px;
+    position: relative;
+    top: -15px;
+}
+.pdp-price .whole {
+    font-size: 38px;
+    font-weight: 400;
+    line-height: normal;
 }
 
 /* ---------- Prime delivery badge ---------- */
 .pdp-prime {
     padding: 6px 14px 0;
-    font-size: 15px;
+    font-size: 16px;
     color: var(--c-text);
     display: flex;
     align-items: center;
@@ -361,12 +357,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ---------- Trade-in banner ---------- */
 .pdp-tradein {
     margin: 0 14px;
-    padding: 14px;
+    padding: 12px;
     background: var(--c-info-bg);
-    border: 1px solid var(--c-info-border);
+    border: 0.67px solid var(--c-info-border);
     border-radius: var(--r-info);
     text-align: center;
-    font-size: 17px;
+    font-size: 16px;
     color: var(--c-text);
 }
 .pdp-tradein .ti-link { color: var(--c-link); }
@@ -382,14 +378,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     padding-top: 14px;
 }
 .variants .label {
-    font-size: 14px; color: var(--c-text); margin: 10px 0 8px;
+    font-size: 16px; color: var(--c-text); margin: 10px 0 8px;
 }
-.variants .label .value { font-weight: 700; }
+.variants .label .value { font-weight: 700; font-size: 16px; }
 
 /* Color swatches */
 .color-swatches { display: flex; gap: 10px; }
 .color-swatch {
-    width: 170px;
+    width: 126px;
     text-align: left;
     background: transparent;
     padding: 0;
@@ -398,12 +394,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     box-sizing: border-box;
 }
 .color-swatch .swatch-tile {
-    width: 170px;
-    height: 170px;
+    width: 126px;
+    height: 126px;
     box-sizing: border-box;
     border: 1px solid var(--c-divider);
     border-radius: var(--r-card);
-    padding: 14px;
+    padding: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -411,21 +407,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     position: relative;
 }
 .color-swatch.selected .swatch-tile {
-    border: 1px solid var(--c-divider);
-    outline: 3px solid var(--c-link);
-    outline-offset: -3px;
+    border: 2px solid #0F1111;
+    outline: none;
     background: #fff;
 }
 .color-swatch .swatch-fill.black {
-    width: 56px; height: 56px; background: #000;
+    width: 48px; height: 48px; background: #000;
 }
-/* White swatch: whole tile is white, no inner box */
 .color-swatch .swatch-fill.white { display: none; }
 .color-swatch .swatch-label {
     position: absolute;
-    left: 14px;
-    bottom: 14px;
-    font-size: 15px;
+    left: 12px;
+    bottom: 12px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--c-text);
     margin: 0;
@@ -456,11 +450,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     border: 2px solid var(--c-divider-subtle);
 }
 .size-tile {
-    flex: 0 0 170px;
+    flex: 0 0 126px;
     box-sizing: border-box;
-    border: 1px solid var(--c-divider);
-    border-radius: var(--r-card);
-    padding: 14px;
+    border: 1px solid var(--c-muted);
+    border-radius: 8px;
+    padding: 12px;
     background: #fff;
     text-align: left;
     font: inherit;
@@ -469,21 +463,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     cursor: pointer;
 }
 .size-tile.selected {
-    border: 1px solid var(--c-divider);
-    outline: 3px solid var(--c-link);
-    outline-offset: -3px;
-    background: var(--c-surface-selected);
-    padding: 14px;
+    border: 2px solid var(--c-link);
+    border-radius: 8px;
+    background: #fff;
+    outline: none;
+    padding: 11px;
 }
-.size-tile .st-name { font-size: 15px; font-weight: 700; }
-.size-tile .st-price { font-size: 15px; font-weight: 400; margin-top: 4px; }
-.size-tile .st-per { font-size: 12px; color: var(--c-text-secondary); }
-.size-tile .st-list { font-size: 13px; color: var(--c-text-secondary); text-decoration: line-through; }
+.size-tile .st-name { font-size: 16px; font-weight: 700; }
+.size-tile .st-price { font-size: 16px; font-weight: 400; margin-top: 4px; }
+.size-tile .st-price sup {
+    font-size: 10px;
+    vertical-align: baseline;
+    position: relative;
+    top: -3px;
+    line-height: 0;
+}
+.size-tile .st-per { font-size: 11px; color: var(--c-text-secondary); }
+.size-tile .st-list { font-size: 11px; color: var(--c-text-secondary); text-decoration: line-through; }
 .size-tile .st-prime {
     color: var(--c-prime-blue);
     font-style: italic;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
     display: inline-flex;
     align-items: center;
     gap: 2px;
@@ -493,33 +494,75 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     font-weight: 700;
     font-style: normal;
 }
-.size-tile .st-stock { color: var(--c-in-stock); font-size: 13px; }
+.size-tile .st-stock { color: var(--c-in-stock); font-size: 12px; }
+
+/* Configuration tiles (Camera only / with Professional Installation) */
+.config-tiles {
+    display: flex;
+    gap: 10px;
+}
+.config-tile {
+    flex: 1;
+    box-sizing: border-box;
+    border: 1px solid var(--c-muted);
+    border-radius: 8px;
+    padding: 12px;
+    background: #fff;
+    text-align: left;
+    font: inherit;
+    color: var(--c-text);
+    cursor: pointer;
+}
+.config-tile.selected {
+    border: 2px solid var(--c-link);
+    border-radius: 12px;
+    background: #fff;
+    padding: 11px;
+}
+.config-tile .ct-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.config-tile .ct-price { font-size: 14px; font-weight: 400; }
+.config-tile .ct-price sup { font-size: 10px; vertical-align: top; line-height: 1; }
+.config-tile .ct-list { font-size: 11px; color: var(--c-text-secondary); text-decoration: line-through; }
+.config-tile .ct-stock { font-size: 12px; color: var(--c-in-stock); margin-top: 2px; }
+.config-tile .ct-sub { font-size: 13px; color: var(--c-text-secondary); }
 
 /* ============================================================
    8. DELIVERY INFO / STOCK / QUANTITY / BUTTONS
    ============================================================ */
-.pdp-delivery { padding: 12px 14px 0; font-size: 14px; color: var(--c-text); }
+.pdp-delivery { padding: 12px 14px 0; font-size: 16px; color: var(--c-text); }
 .pdp-delivery p { margin: 2px 0; }
 .pdp-delivery b { font-weight: 700; }
-.pdp-delivery .leaf { color: var(--c-in-stock); }
 .pdp-delivery a { color: var(--c-link); }
+.pdp-delivery .delivery-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0;
+}
+.pdp-delivery .delivery-row svg { flex: 0 0 16px; }
+.pdp-delivery .icon-caret {
+    font-size: 13px; color: var(--c-text-secondary);
+    transform: rotate(180deg);
+    display: inline-block;
+}
 
 .pdp-stock {
     padding: 10px 14px 4px;
-    color: var(--c-in-stock); font-size: 16px; font-weight: 500;
+    color: var(--c-in-stock); font-size: 18px; font-weight: 400;
 }
 
 .pdp-qty-wrap { padding: 6px 14px; }
 .pdp-qty {
     width: 100%;
     padding: 10px 14px;
-    border: 1px solid var(--c-divider);
+    border: 0.67px solid var(--c-divider);
     border-radius: var(--r-pill);
-    font-size: 13px;
+    font-size: 16px;
     background: #fff;
     color: var(--c-text);
     appearance: none;
     -webkit-appearance: none;
+    height: 43px;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%23565959' d='M0 0l5 6 5-6z'/></svg>");
     background-repeat: no-repeat;
     background-position: right 14px center;
@@ -531,29 +574,41 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     margin: 8px 14px 0;
     padding: 12px;
     border-radius: var(--r-pill);
-    font-size: 16px; font-weight: 700;
+    font-size: 16px; font-weight: 400;
     color: var(--c-text);
     text-align: center;
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 0.67px solid transparent;
+    font-family: inherit;
+    height: 43px;
 }
 .pdp-btn.yellow {
     background: var(--c-btn-yellow);
-    border-color: var(--c-btn-yellow-active);
+    border-color: var(--c-btn-yellow);
 }
 .pdp-btn.yellow:active { background: var(--c-btn-yellow-active); }
 .pdp-btn.orange {
     background: var(--c-btn-orange);
-    border-color: var(--c-btn-orange-active);
+    border-color: var(--c-btn-orange);
 }
 .pdp-btn.orange:active { background: var(--c-btn-orange-active); }
 
 /* ============================================================
    9. ADD ADDITIONAL ITEMS (install row) — NEW
    ============================================================ */
-.add-items-wrap { padding: 16px 14px 8px; }
+.add-items-wrap { padding: 16px 14px 8px; transition: opacity 0.15s ease; }
+.add-items-wrap.loading {
+    opacity: 0.4;
+    pointer-events: none;
+    animation: shimmer 0.6s ease-in-out;
+}
+@keyframes shimmer {
+    0% { opacity: 1; }
+    30% { opacity: 0.3; }
+    100% { opacity: 0.4; }
+}
 .add-items-title {
-    font-size: 17px; font-weight: 700; color: var(--c-text);
+    font-size: 18px; font-weight: 700; color: var(--c-text);
     margin-bottom: 8px;
 }
 .add-items-card {
@@ -563,8 +618,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .add-items-row {
     display: flex; align-items: center;
-    padding: 12px 14px;
+    padding: 16px;
     gap: 14px;
+}
+.add-items-row .row-text,
+.add-items-row .row-chev {
+    cursor: pointer;
 }
 .add-items-row .row-checkbox {
     width: 20px; height: 20px;
@@ -578,10 +637,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     cursor: pointer;
 }
 .add-items-row .row-title {
-    font-size: 15px; font-weight: 400; color: var(--c-text);
+    font-size: 16px; font-weight: 400; color: var(--c-text);
 }
 .add-items-row .row-price {
     font-size: 14px; color: var(--c-price-red); font-weight: 400;
+}
+.add-items-row .row-sold {
+    font-size: 12px; color: var(--c-text-secondary); font-weight: 400;
+    margin-top: 2px;
+}
+.add-items-row .row-sold a { color: var(--c-link); }
+.row-tos {
+    padding: 10px 14px;
+    border-top: 1px solid var(--c-divider);
+    font-size: 14px;
+}
+.row-tos a {
+    color: var(--c-link);
+    font-weight: 500;
 }
 .add-items-row .row-chev {
     color: var(--c-text-secondary); font-size: 22px;
@@ -594,27 +667,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ============================================================
    10. SHIPPER / SELLER / LINKS
    ============================================================ */
-.pdp-ship { padding: 14px 14px 4px; font-size: 13px; color: var(--c-text); }
-.pdp-ship p { margin: 3px 0; }
-.pdp-ship b { font-weight: 700; }
-.pdp-link-block { padding: 4px 14px; font-size: 13px; }
+.pdp-ship { padding: 28px 14px 8px; font-size: 14px; color: var(--c-text); }
+.pdp-ship p { margin: 6px 0; display: flex; gap: 12px; }
+.pdp-ship .ship-label { color: var(--c-text-secondary); min-width: 100px; }
+.pdp-ship a { color: var(--c-link); }
+.pdp-link-block { padding: 4px 14px; font-size: 14px; }
 .pdp-link-block a { color: var(--c-link); display: block; padding: 4px 0; }
-.pdp-seemore { padding: 2px 14px 10px; font-size: 13px; }
+.pdp-seemore { padding: 2px 14px 10px; font-size: 14px; }
 .pdp-seemore a { color: var(--c-link); }
 
-.pdp-gift { padding: 8px 14px; font-size: 13px; color: var(--c-text); display: flex; align-items: center; gap: 6px; }
-.pdp-autobuy { padding: 4px 14px 10px; font-size: 13px; }
+.pdp-gift { padding: 8px 14px; font-size: 16px; color: var(--c-text); display: flex; align-items: center; gap: 6px; }
+.pdp-autobuy { padding: 4px 14px 10px; font-size: 16px; }
 .pdp-autobuy a { color: var(--c-link); }
 
 .pdp-save-block { padding: 4px 14px 10px; }
-.pdp-save-block h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--c-text); }
+.pdp-save-block h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--c-text); }
 .save-pill {
     display: block; width: 100%;
     padding: 10px; margin-top: 8px;
-    border: 1px solid var(--c-divider);
+    border: 0.67px solid var(--c-divider);
     border-radius: var(--r-pill);
     background: #fff;
-    font-size: 14px; color: var(--c-text);
+    font-size: 16px; color: var(--c-text);
     text-align: center;
 }
 
@@ -626,7 +700,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 10px;
 }
-.bundles-header h2 { font-size: 17px; font-weight: 700; color: var(--c-text); }
+.bundles-header h2 { font-size: 18px; font-weight: 700; color: var(--c-text); }
 .bundles-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; }
 .bundles-scroll::-webkit-scrollbar { display: none; }
 .bundle-tile {
@@ -705,12 +779,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    14. MOBILE TAKEOVER POPOVER (install details)
    ============================================================ */
 .popover {
-    position: fixed; inset: 0;
+    position: fixed;
+    inset: 0;
     background: #fff;
     z-index: 2000;
     display: flex; flex-direction: column;
     transform: translateY(100%);
     transition: transform 200ms ease-out;
+    max-width: 414px;
+    margin: 0 auto;
 }
 .popover.open { transform: translateY(0); }
 .popover-header {
@@ -720,9 +797,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     position: sticky; top: 0;
 }
 .popover-header .cancel {
-    font-size: 14px; font-weight: 700; color: var(--c-text);
-    display: inline-flex; align-items: center; gap: 4px;
-    background: transparent; padding: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--c-text);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+    padding: 0;
 }
 .popover-body {
     padding: 18px 14px;
@@ -734,34 +816,63 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     margin-bottom: 6px;
 }
 .popover-body .pop-provider {
-    font-size: 14px; color: var(--c-text-secondary); margin-bottom: 6px;
+    font-size: 20px;
+    color: var(--c-text-secondary);
+    margin-bottom: 6px;
 }
 .popover-body .pop-price {
-    font-size: 16px; font-weight: 700; color: var(--c-price-red);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--c-price-red);
+    margin-bottom: 4px;
+}
+.popover-body .pop-tos {
+    display: block;
+    font-size: 14px;
+    color: #0066C0;
+    font-weight: 500;
     margin-bottom: 18px;
 }
 .popover-tile-group {
-    display: flex; gap: 10px; margin-bottom: 18px;
+    display: flex; gap: 8px; margin-bottom: 18px;
 }
 .popover-tile {
-    flex: 0 0 160px;
-    border: 2px solid var(--c-link);
-    background: var(--c-surface-selected);
+    flex: 1;
+    border: 1px solid var(--c-divider);
     border-radius: var(--r-card);
-    padding: 14px;
+    padding: 10px 8px;
     text-align: center;
+    cursor: pointer;
 }
-.popover-tile .pt-name { font-size: 14px; font-weight: 700; color: var(--c-text); margin-bottom: 4px; }
-.popover-tile .pt-price { font-size: 14px; color: var(--c-price-red); font-weight: 700; }
+.popover-tile[aria-checked="true"] {
+    outline: 3px solid var(--c-link);
+    outline-offset: -3px;
+    background: var(--c-surface-selected);
+}
+.popover-tile .pt-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 2px;
+}
+.popover-tile .pt-price {
+    font-size: 15px;
+    color: var(--c-price-red);
+    font-weight: 700;
+    margin-bottom: 0;
+}
 .popover-body ul { padding-left: 20px; margin-bottom: 24px; }
-.popover-body li { font-size: 14px; color: var(--c-text); margin-bottom: 8px; line-height: 1.45; }
-.popover-cta {
-    padding: 14px;
-    border-top: 1px solid var(--c-divider);
-    background: #fff;
-    position: sticky; bottom: 0;
+.popover-body li {
+    font-size: 14px;
+    color: var(--c-text);
+    margin: 0;
+    line-height: 1.45;
 }
-.popover-cta .cta-btn {
+/* Inline CTA (placed after bullets in the scrollable body) */
+.popover-cta-inline {
+    padding: 14px 0 24px;
+}
+.popover-cta-inline .cta-btn {
     display: block; width: 100%;
     padding: 12px;
     background: var(--c-btn-yellow);
@@ -770,6 +881,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     font-size: 16px; font-weight: 400; color: var(--c-text);
     text-align: center;
     cursor: pointer;
+    font-family: inherit;
 }
 
 /* prevent background scroll while popover is open */
