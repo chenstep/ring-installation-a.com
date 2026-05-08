@@ -136,8 +136,8 @@ if (fs.existsSync(sharedJsPath)) {
     // Replace '/dp/ and '/gp/ patterns with base path prefix
     sharedContent = sharedContent.replace(/: '\/dp\//g, `: '${BASE}/dp/`);
     sharedContent = sharedContent.replace(/: '\/gp\//g, `: '${BASE}/gp/`);
-    // Fix relative image/asset paths (e.g. 'images/...' and 'assets/...') to absolute with base
-    sharedContent = sharedContent.replace(/: '(images|assets)\//g, `: '${BASE}/$1/`);
+    // Fix absolute image/asset paths (e.g. '/images/...' and '/assets/...') to include base
+    sharedContent = sharedContent.replace(/: '\/(images|assets)\//g, `: '${BASE}/$1/`);
     fs.writeFileSync(sharedJsPath, sharedContent, 'utf8');
 }
 

@@ -45,17 +45,41 @@
 <script>
 (function () {
     const state = Ring.readState();
+    // If user hasn't gone through PDP (no state was ever written), treat cart as empty
+    if (!localStorage.getItem('ring.journey.state')) {
+        state.device.quantity = 0;
+    }
     Ring.renderHeader('#header-host', { cartCount: state.device.quantity + (state.install.selected ? state.install.quantity : 0) });
 
     function render() {
         const totals = Ring.computeTotals(state);
         const s = Ring.fmtSplit(totals.itemsSubtotal);
+        const isEmpty = state.device.quantity <= 0 && !state.install.selected;
+
         document.getElementById('subtotal-whole').textContent = s.whole.toLocaleString();
         document.getElementById('subtotal-frac').textContent = s.frac;
         document.getElementById('co-count').textContent = totals.itemCount;
 
         const host = document.getElementById('cart-items');
         host.innerHTML = '';
+
+        if (isEmpty) {
+            document.querySelector('.cart-subtotal-top').style.display = 'none';
+            document.querySelector('.cart-deselect-row').style.display = 'none';
+            document.querySelector('.cart-sticky-cta').style.display = 'none';
+            host.innerHTML = [
+                '<div class="cart-empty">',
+                '  <h2>Your Amazon Cart is empty.</h2>',
+                '  <p>Check your Saved for later items below or <a href="/ring-installation-a.com/dp/B0F67KWWQH">continue shopping</a>.</p>',
+                '</div>'
+            ].join('');
+            return;
+        }
+
+        document.querySelector('.cart-subtotal-top').style.display = '';
+        document.querySelector('.cart-deselect-row').style.display = '';
+        document.querySelector('.cart-sticky-cta').style.display = '';
+
         if (state.device.quantity > 0) host.innerHTML += deviceItemHtml();
         if (state.install.selected) host.innerHTML += installItemHtml();
 

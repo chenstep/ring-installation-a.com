@@ -279,7 +279,7 @@
         }
 
         var invoiceLink = document.getElementById('invoice-link');
-        if (invoiceLink) invoiceLink.href = 'invoice.html?item=' + item;
+        if (invoiceLink) invoiceLink.href = Ring.CONST.urls.invoice + '?item=' + item;
     } catch(e) {
         console.error('Order details error:', e);
     }

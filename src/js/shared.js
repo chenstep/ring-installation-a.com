@@ -12,7 +12,7 @@
             shortName: 'Ring Floodlight Cam Pro',
             defaults: { color: 'White', size: '1', quantity: 1 },
             sizePrice: { '1': 279.99, '2': 499.99, '3': 779.98 },
-            image: 'images/ring-product-hero.jpg',
+            image: '/images/ring-product-hero.jpg',
             listPrice: 319.99, // for the strikethrough + -12% deal
             discountPct: 12
         },
@@ -22,7 +22,7 @@
             provider: 'HelloTech',
             price: 129.00,
             sizePrice: { '1': 129.00, '2': 248.00, '3': 349.00 },
-            logo: 'assets/hellotech-logo.png'
+            logo: '/assets/hellotech-logo.png'
         },
         user: {
             firstName: 'Harry',

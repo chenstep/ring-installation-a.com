@@ -700,26 +700,26 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 16px;
+    overflow: hidden;
 }
-.od-progress-tracker::before {
+.od-progress-tracker::before,
+.od-progress-tracker::after {
+    display: none;
+}
+.od-milestone-dot {
+    position: relative;
+}
+.od-milestone:not(:first-child) .od-milestone-dot::before {
     content: '';
     position: absolute;
-    top: 9px;
-    left: 14px;
-    right: 14px;
+    top: 50%;
+    right: 100%;
+    width: calc(50vw);
+    max-width: 78px;
     height: 3px;
     background: #888c8c;
-    z-index: 0;
-}
-.od-progress-tracker::after {
-    content: '';
-    position: absolute;
-    top: 9px;
-    left: 14px;
-    width: 10%;
-    height: 3px;
-    background: #1C89E3;
-    z-index: 1;
+    transform: translateY(-50%);
+    z-index: -1;
 }
 .od-milestone {
     display: flex;
@@ -1249,6 +1249,23 @@ body.has-sticky-cta { padding-bottom: 90px; }
 .cart-items-bg {
     background: #fff;
     padding: 0 12px;
+}
+.cart-empty {
+    padding: 20px 14px 40px;
+}
+.cart-empty h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0F1111;
+    margin-bottom: 8px;
+}
+.cart-empty p {
+    font-size: 14px;
+    color: #565959;
+    line-height: 20px;
+}
+.cart-empty a {
+    color: #007185;
 }
 
 /* --- Cart item card (gray bg, inset tile) --- */
