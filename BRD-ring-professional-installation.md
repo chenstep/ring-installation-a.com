@@ -267,6 +267,44 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 | **Device Return Rate (with install vs. without)** | Compare return rates between cohorts |
 | **Contact Rate** | CS contacts mentioning installation issues |
 
+### 4.5 A/B Test Plan (PDP Widget)
+
+**Experiment:** Widget visible (treatment) vs. widget hidden (control) on eligible Ring PDPs.
+
+#### Primary Metrics (determines launch decision)
+
+| Metric | Definition |
+|--------|------------|
+| **Device Conversion Rate** | (Device orders) / (PDP views) — must not regress |
+| **Install Attach Rate** | (Orders with installation) / (Device orders in treatment) |
+| **Revenue per PDP View** | (Total revenue incl. install) / (PDP views) |
+
+#### Secondary Metrics (monitors for harm)
+
+| Metric | Definition |
+|--------|------------|
+| **Add-to-Cart Rate** | (ATC clicks) / (PDP views) — widget must not reduce ATC |
+| **PDP Bounce Rate** | (Single-page sessions) / (PDP views) — widget must not increase exits |
+| **Time to ATC** | Median seconds from PDP load to ATC click — must not increase significantly |
+| **Checkout Abandonment** | (Checkout starts) / (Orders placed) — monitor for install-related friction |
+| **Page Load Performance** | P50/P90 LCP — widget JS must not degrade page speed |
+
+#### Guardrail Metrics (auto-rollback triggers)
+
+| Metric | Threshold |
+|--------|-----------|
+| Device conversion rate regression | >2% relative decline |
+| PDP bounce rate increase | >1% absolute increase |
+| Checkout abandonment increase | >1.5% absolute increase |
+
+#### Segmentation Dimensions
+
+- Device category (cameras vs. doorbells vs. accessories)
+- Device price tier (single vs. multi-pack)
+- Customer segment (Prime vs. non-Prime)
+- Geography (metro vs. non-metro)
+- New vs. returning Ring customers
+
 ---
 
 ## 5. Engineering Manager Audit
@@ -276,7 +314,7 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 | # | Issue | Risk | Recommendation |
 |---|-------|------|----------------|
 | 1 | **No authentication model** — prototype uses hardcoded user. How does the feature interact with real Amazon sign-in, address book, and payment instruments? | High | Define auth requirements and API contracts for user session data |
-| 2 | **Install quantity vs. device quantity coupling** — cart/checkout allow independent adjustment. A customer could buy 1 device but 3 installations. | Medium | Define business rule: should install quantity be capped at device quantity? |
+| 2 | **Install quantity vs. device quantity coupling** — cart/checkout allow independent adjustment. A customer could buy 1 device but 3 installations. | Resolved | No capping or coupling — install quantity is independent of device quantity per requirements (US-03). Customers may have existing devices needing installation. |
 | 3 | **No scheduling flow** — the prototype shows "Scheduling" as a milestone but provides no mechanism to actually schedule. What triggers transitions between milestones? | High | Spec the HelloTech scheduling integration (email link? in-app flow?) |
 | 4 | **Order number pattern** — are device and installation split into separate orders or is installation a sub-item within one order? | High | Clarify with OMS team |
 | 5 | **No eligibility check** — what happens if HelloTech is unavailable in the customer's area? No zip-code check exists. | High | Add availability check (API call) before showing the widget |
@@ -291,8 +329,8 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 | 1 | **Client-side state only** — if user switches devices/browsers, state is lost mid-funnel | Recommend server-side cart persistence |
 | 2 | **PDP always resets state** — if user goes back to PDP from cart, all selections reset | Could frustrate users who navigate back; consider preserving on back-navigation |
 | 3 | **No deep-link support** — sharing cart/checkout URL won't reproduce the user's state | URL params could encode key selections |
-| 4 | **No A/B testing framework** — how do we measure the upsell interstitial vs. no interstitial? | Integrate with Amazon's experimentation platform |
-| 5 | **Service availability gaps** — if HelloTech cannot serve a region, showing the widget creates broken expectations | Gate widget display on ZIP-code eligibility check |
+| 4 | **A/B testing framework** — see Section 4.5 for experimentation plan | Resolved | Weblab integration defined in experimentation section |
+| 5 | **Service availability gaps** — addressed by GLOW zip code eligibility gate in US-01 AC#6 | Resolved | Widget only renders for serviceable zip codes |
 
 ### 5.3 Dependencies
 
