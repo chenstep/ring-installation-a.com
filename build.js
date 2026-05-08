@@ -139,6 +139,9 @@ if (fs.existsSync(sharedJsPath)) {
     fs.writeFileSync(sharedJsPath, sharedContent, 'utf8');
 }
 
+// Create .nojekyll for GitHub Pages
+fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
+
 console.log('Build complete! Output in /public');
 console.log('Routes created:');
 for (const [route] of Object.entries(ROUTES)) {
