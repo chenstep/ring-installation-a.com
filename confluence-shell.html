@@ -1,0 +1,121 @@
+<h1>Ring Professional Installation on Amazon.com</h1>
+
+<table>
+<tr><td><b>PM</b></td><td>Stephen Chen</td></tr>
+<tr><td><b>TPM</b></td><td>[Assign]</td></tr>
+<tr><td><b>Engineering</b></td><td>[Assign]</td></tr>
+<tr><td><b>Service Partner</b></td><td>HelloTech, Inc.</td></tr>
+<tr><td><b>Status</b></td><td>Requirements</td></tr>
+<tr><td><b>Target Launch</b></td><td>TBD</td></tr>
+</table>
+
+<hr>
+
+<h2>What's New</h2>
+<p>Professional installation by HelloTech offered alongside Ring devices on Amazon.com. Net new vs. existing "Add Additional Items" (warranties):</p>
+<ol>
+<li><b>Dynamic pricing tied to device configuration</b> — Install price changes based on device size/pack selected</li>
+<li><b>Independent quantity selection</b> — Customer can choose different install count than device pack via popover tile selector</li>
+<li><b>ZIP code eligibility gating</b> — Widget only displays for HelloTech serviceable areas (GLOW zip)</li>
+<li><b>Third-party service fulfillment</b> — Creates separate "Email delivery" order fulfilled by HelloTech</li>
+</ol>
+
+<hr>
+
+<h2>Prototype</h2>
+<table>
+<tr><th>Step</th><th>Link</th></tr>
+<tr><td>PDP (Device)</td><td><a href="https://chenstep.github.io/ring-installation-a.com/dp/B0F67KWWQH">Open</a></td></tr>
+<tr><td>PDP (Install)</td><td><a href="https://chenstep.github.io/ring-installation-a.com/dp/B09INSTALL1">Open</a></td></tr>
+<tr><td>Cart Upsell</td><td><a href="https://chenstep.github.io/ring-installation-a.com/gp/cart/upsell">Open</a></td></tr>
+<tr><td>Cart</td><td><a href="https://chenstep.github.io/ring-installation-a.com/gp/cart/view.html">Open</a></td></tr>
+<tr><td>Checkout</td><td><a href="https://chenstep.github.io/ring-installation-a.com/gp/buy/spc/handlers/display.html">Open</a></td></tr>
+<tr><td>Thank You</td><td><a href="https://chenstep.github.io/ring-installation-a.com/gp/buy/thankyou">Open</a></td></tr>
+<tr><td>Orders</td><td><a href="https://chenstep.github.io/ring-installation-a.com/gp/your-account/order-history">Open</a></td></tr>
+<tr><td>Order Details</td><td><a href="https://chenstep.github.io/ring-installation-a.com/gp/your-account/order-details?item=install">Open</a></td></tr>
+<tr><td>Invoice</td><td><a href="https://chenstep.github.io/ring-installation-a.com/gp/your-account/order-details/invoice?item=install">Open</a></td></tr>
+<tr><td>Cancellation</td><td><a href="https://chenstep.github.io/ring-installation-a.com/gp/help/customer/cancel-items">Open</a></td></tr>
+</table>
+<p><b>Flow:</b> PDP → Add to Cart (with install → Cart, without → Upsell → Cart) → Checkout → Thank You → Orders → Order Details</p>
+
+<hr>
+
+<h2>BRD</h2>
+<p>[Link to BRD page or expand inline]</p>
+
+<hr>
+
+<h2>Engineering Summary</h2>
+<table>
+<tr><th>#</th><th>Requirement</th></tr>
+<tr><td>1</td><td>Widget only renders if customer GLOW zip is in HelloTech's serviceable list</td></tr>
+<tr><td>2</td><td>Each device ASIN maps to configured install ASINs (1/2/3 tier) — not hardcoded</td></tr>
+<tr><td>3</td><td>Device size change unselects install checkbox (no silent carryover)</td></tr>
+<tr><td>4</td><td>Install qty independent of device qty — no coupling or capping</td></tr>
+<tr><td>5</td><td>Install is separate order line using existing "Email delivery" pattern</td></tr>
+<tr><td>6</td><td>Tax calculated only on install price — state-level service tax rules apply</td></tr>
+<tr><td>7</td><td>HelloTech T&C displayed below "Place your order" CTA when install in cart</td></tr>
+<tr><td>8</td><td>Zero latency — widget must not add latency to PDP; A/B test gates launch</td></tr>
+</table>
+
+<hr>
+
+<h2>Milestone Tracker</h2>
+<table>
+<tr><th>#</th><th>Milestone</th><th>Status</th><th>Date</th><th>Notes</th></tr>
+<tr><td colspan="5" style="background:#232f3e;color:#fff;font-weight:bold;">Phase 1: Requirements & Design</td></tr>
+<tr><td>1</td><td>BRD complete</td><td>Done</td><td>May 8</td><td></td></tr>
+<tr><td>2</td><td>Mobile prototype</td><td>Done</td><td>May 8</td><td>GitHub Pages live</td></tr>
+<tr><td>3</td><td>Engineering review</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>4</td><td>TPM feasibility review</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>5</td><td>HelloTech API contract</td><td>Not Started</td><td></td><td>Scheduling, eligibility, pricing APIs</td></tr>
+<tr><td>6</td><td>Tax Engine consultation</td><td>Not Started</td><td></td><td>Service tax by state</td></tr>
+<tr><td>7</td><td>OMS pattern decision</td><td>Not Started</td><td></td><td>Separate order vs. sub-item</td></tr>
+<tr><td colspan="5" style="background:#232f3e;color:#fff;font-weight:bold;">Phase 2: Technical Design</td></tr>
+<tr><td>8</td><td>Technical design doc</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>9</td><td>HelloTech API integration design</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>10</td><td>PDP widget placement approval</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>11</td><td>A/B test plan finalized</td><td>Not Started</td><td></td><td>Weblab setup</td></tr>
+<tr><td>12</td><td>Security review</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td colspan="5" style="background:#232f3e;color:#fff;font-weight:bold;">Phase 3: Development</td></tr>
+<tr><td>13</td><td>PDP widget implementation</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>14</td><td>Cart/Checkout integration</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>15</td><td>Order management integration</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>16</td><td>HelloTech API integration</td><td>Not Started</td><td></td><td>ZIP eligibility + scheduling</td></tr>
+<tr><td>17</td><td>Tax calculation integration</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>18</td><td>T&C injection at checkout</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td colspan="5" style="background:#232f3e;color:#fff;font-weight:bold;">Phase 4: Test & Launch</td></tr>
+<tr><td>19</td><td>QA / UAT</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>20</td><td>A/B test (limited)</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>21</td><td>A/B readout</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>22</td><td>Launch decision</td><td>Not Started</td><td></td><td></td></tr>
+<tr><td>23</td><td>GA rollout</td><td>Not Started</td><td></td><td></td></tr>
+</table>
+
+<hr>
+
+<h2>Open Questions</h2>
+<table>
+<tr><th>#</th><th>Question</th><th>Owner</th><th>Decision</th></tr>
+<tr><td>1</td><td>Separate order numbers vs. sub-item?</td><td>TPM + OMS</td><td></td></tr>
+<tr><td>2</td><td>HelloTech scheduling — email link or in-app?</td><td>PM + HelloTech</td><td></td></tr>
+<tr><td>3</td><td>Cancellation cutoff — when too late?</td><td>PM + HelloTech</td><td></td></tr>
+<tr><td>4</td><td>National coverage or limited markets first?</td><td>PM + HelloTech</td><td></td></tr>
+<tr><td>5</td><td>Mobile app + mobile web simultaneous?</td><td>PM + App team</td><td></td></tr>
+<tr><td>6</td><td>Who owns electrical licensing compliance?</td><td>Legal + HelloTech</td><td></td></tr>
+<tr><td>7</td><td>Post-purchase install add from order details?</td><td>PM</td><td></td></tr>
+<tr><td>8</td><td>Stale price validation at checkout?</td><td>Eng</td><td></td></tr>
+</table>
+
+<hr>
+
+<h2>Dependencies</h2>
+<table>
+<tr><th>Dependency</th><th>Owner</th><th>Status</th><th>Risk</th></tr>
+<tr><td>HelloTech API (scheduling, eligibility, pricing)</td><td>HelloTech Eng</td><td>Not Started</td><td>High</td></tr>
+<tr><td>Order Management System</td><td>Amazon OMS</td><td>Not Started</td><td>High</td></tr>
+<tr><td>Tax Engine (services by state)</td><td>Amazon Tax</td><td>Not Started</td><td>Medium</td></tr>
+<tr><td>PDP widget placement</td><td>PDP Platform</td><td>Not Started</td><td>Medium</td></tr>
+<tr><td>ZIP eligibility API / coverage map</td><td>HelloTech</td><td>Not Started</td><td>High</td></tr>
+<tr><td>Mobile app rendering</td><td>Shopping App</td><td>Not Started</td><td>Low</td></tr>
+</table>

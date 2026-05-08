@@ -157,6 +157,19 @@
         ].join('');
     }
 
+    // ---------- restart button (outside mobile viewport) ----------
+    function renderRestartBtn() {
+        if (window.innerWidth <= 414) return;
+        var btn = document.createElement('div');
+        btn.innerHTML = '<button id="proto-restart" style="position:fixed;top:20px;left:calc(50% + 230px);z-index:9999;background:#cc0c39;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,0.2);">Restart Demo</button>';
+        document.body.appendChild(btn);
+        document.getElementById('proto-restart').addEventListener('click', function() {
+            clearState();
+            window.location.href = CONST.urls.pdp;
+        });
+    }
+    document.addEventListener('DOMContentLoaded', renderRestartBtn);
+
     // expose
     window.Ring = {
         CONST: CONST,

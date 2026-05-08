@@ -41,7 +41,7 @@
 <section class="orders-card">
     <h3>Purchase history <span style="font-size:13px; color:var(--c-text-secondary); font-weight:400;">Past three months</span></h3>
 
-    <a href="/gp/your-account/order-details?item=install" class="purchase-history-card">
+    <a href="/gp/your-account/order-details?item=install" class="purchase-history-card" id="orders-install-card">
         <img src="/assets/hellotech-logo.png" alt="HelloTech">
         <div>
             <div class="ph-name" id="orders-install-name">Professional Installation by HelloTech (1 Camera)</div>
@@ -67,8 +67,15 @@
     var state = Ring.readState();
     var sizeLabels = {1:'1 Camera',2:'2 Cameras',3:'3 Cameras'};
     var packLabel = {1:'', 2:' (2-Pack)', 3:' (3-Pack)'}[state.device.size] || '';
-    var el = document.getElementById('orders-install-name');
-    if (el) el.textContent = 'Professional Installation by HelloTech (' + (sizeLabels[state.install.cameras || state.device.size] || '1 Camera') + ')';
+
+    var installCard = document.getElementById('orders-install-card');
+    if (!state.install.selected && installCard) {
+        installCard.style.display = 'none';
+    } else {
+        var el = document.getElementById('orders-install-name');
+        if (el) el.textContent = 'Professional Installation by HelloTech (' + (sizeLabels[state.install.cameras || state.device.size] || '1 Camera') + ')';
+    }
+
     var devEl = document.getElementById('orders-device-name');
     if (devEl) devEl.textContent = 'Ring Floodlight Cam Pro' + packLabel;
 })();
