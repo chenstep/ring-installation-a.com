@@ -63,14 +63,28 @@ for (const [route, srcFile] of Object.entries(ROUTES)) {
 // Also copy index.html to root
 fs.copyFileSync(path.join(SRC, 'index.html'), path.join(OUT, 'index.html'));
 
+// Base path for GitHub Pages (repo name)
+// Set to '' for custom domain or local server, '/ring-installation-a.com' for GH Pages
+const BASE = process.env.BASE_PATH || '/ring-installation-a.com';
+
 // Fix relative paths in the routed HTML files
-// CSS/JS/image paths need to be absolute from root
 function fixPaths(filePath, depth) {
     let content = fs.readFileSync(filePath, 'utf8');
-    const prefix = '/';
+    const prefix = BASE + '/';
 
     // Replace relative href/src to css/, js/, fonts/, images/, assets/
     content = content.replace(/(href|src)="(css|js|fonts|images|assets)\//g, `$1="${prefix}$2/`);
+
+    // Fix navigation links to include base path
+    content = content.replace(/(href|action)="\/(dp|gp)\//g, `$1="${BASE}/$2/`);
+
+    // Fix window.location.href JS references
+    content = content.replace(/window\.location\.href\s*=\s*['"]\/(dp|gp)\//g, `window.location.href='${BASE}/$1/`);
+
+    // Fix Ring.CONST.urls references (they start with /)
+    content = content.replace(/urls:\s*\{[^}]+\}/s, (match) => {
+        return match.replace(/': '\//g, `': '${BASE}/`);
+    });
 
     // Fix the iframe src for cart-upsell background
     content = content.replace(/src="index\.html"/, `src="${prefix}dp/B0F67KWWQH"`);
@@ -92,6 +106,16 @@ for (const [route, srcFile] of Object.entries(ROUTES)) {
 
 // Also fix the root index.html (depth 0 — already correct but run anyway)
 fixPaths(path.join(OUT, 'index.html'), 0);
+
+// Fix URLs in shared.js (the CONST.urls object)
+const sharedJsPath = path.join(OUT, 'js', 'shared.js');
+if (fs.existsSync(sharedJsPath)) {
+    let sharedContent = fs.readFileSync(sharedJsPath, 'utf8');
+    // Replace '/dp/ and '/gp/ patterns with base path prefix
+    sharedContent = sharedContent.replace(/: '\/dp\//g, `: '${BASE}/dp/`);
+    sharedContent = sharedContent.replace(/: '\/gp\//g, `: '${BASE}/gp/`);
+    fs.writeFileSync(sharedJsPath, sharedContent, 'utf8');
+}
 
 console.log('Build complete! Output in /public');
 console.log('Routes created:');

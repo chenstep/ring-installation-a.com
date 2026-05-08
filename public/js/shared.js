@@ -39,15 +39,15 @@
         },
         taxRate: 0.08,
         urls: {
-            pdp: '/dp/B0F67KWWQH',
-            cart: '/gp/cart/view.html',
-            cartUpsell: '/gp/cart/upsell',
-            checkout: '/gp/buy/spc/handlers/display.html',
-            thankyou: '/gp/buy/thankyou',
-            orders: '/gp/your-account/order-history',
-            orderDetails: '/gp/your-account/order-details',
-            invoice: '/gp/your-account/order-details/invoice',
-            cancel: '/gp/help/customer/cancel-items'
+            pdp: '/ring-installation-a.com/dp/B0F67KWWQH',
+            cart: '/ring-installation-a.com/gp/cart/view.html',
+            cartUpsell: '/ring-installation-a.com/gp/cart/upsell',
+            checkout: '/ring-installation-a.com/gp/buy/spc/handlers/display.html',
+            thankyou: '/ring-installation-a.com/gp/buy/thankyou',
+            orders: '/ring-installation-a.com/gp/your-account/order-history',
+            orderDetails: '/ring-installation-a.com/gp/your-account/order-details',
+            invoice: '/ring-installation-a.com/gp/your-account/order-details/invoice',
+            cancel: '/ring-installation-a.com/gp/help/customer/cancel-items'
         }
     };
 
