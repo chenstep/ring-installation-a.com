@@ -398,7 +398,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     height: 126px;
     box-sizing: border-box;
     border: 1px solid var(--c-divider);
-    border-radius: var(--r-card);
+    border-radius: 12px;
     padding: 12px;
     display: flex;
     align-items: center;
@@ -453,7 +453,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     flex: 0 0 126px;
     box-sizing: border-box;
     border: 1px solid var(--c-muted);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 12px;
     background: #fff;
     text-align: left;
@@ -464,7 +464,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .size-tile.selected {
     border: 2px solid var(--c-link);
-    border-radius: 8px;
+    border-radius: 12px;
     background: #fff;
     outline: none;
     padding: 11px;
@@ -548,7 +548,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .pdp-stock {
     padding: 10px 14px 4px;
-    color: var(--c-in-stock); font-size: 18px; font-weight: 400;
+    color: var(--c-in-stock); font-size: 20px; font-weight: 400;
 }
 
 .pdp-qty-wrap { padding: 6px 14px; }

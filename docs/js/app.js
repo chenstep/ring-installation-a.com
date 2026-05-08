@@ -6,7 +6,8 @@
 
     const SIZE_PRICE = Ring.CONST.device.sizePrice;
     const INSTALL_SIZE_PRICE = Ring.CONST.install.sizePrice;
-    const SIZE_LABEL = { '1': '1 Camera', '2': '2 Cameras', '3': '3 Cameras' };
+    const SIZE_LABEL = Ring.CONST.device.sizeLabels || { '1': '1 Camera', '2': '2 Cameras', '3': '3 Cameras' };
+    const INSTALL_LABEL = { '1': '1 Device', '2': '2 Devices', '3': '3 Devices' };
 
     // Always start fresh on PDP (1 camera, no install selected)
     Ring.clearState();
@@ -46,7 +47,7 @@
         var newPrice = INSTALL_SIZE_PRICE[size];
         state.install.price = newPrice;
         var priceStr = Ring.fmt(newPrice);
-        var sizeStr = SIZE_LABEL[size];
+        var sizeStr = INSTALL_LABEL[size] || SIZE_LABEL[size];
         var wrap = document.querySelector('.add-items-wrap');
         if (!wrap) return;
 
