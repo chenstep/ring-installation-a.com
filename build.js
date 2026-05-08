@@ -72,8 +72,8 @@ function fixPaths(filePath, depth) {
     let content = fs.readFileSync(filePath, 'utf8');
     const prefix = BASE + '/';
 
-    // Replace relative href/src to css/, js/, fonts/, images/, assets/
-    content = content.replace(/(href|src)="(css|js|fonts|images|assets)\//g, `$1="${prefix}$2/`);
+    // Replace absolute href/src to /css/, /js/, /fonts/, /images/, /assets/
+    content = content.replace(/(href|src)="\/(css|js|fonts|images|assets)\//g, `$1="${prefix}$2/`);
 
     // Fix navigation links to include base path
     content = content.replace(/(href|action)="\/(dp|gp)\//g, `$1="${BASE}/$2/`);
@@ -106,6 +106,28 @@ for (const [route, srcFile] of Object.entries(ROUTES)) {
 
 // Also fix the root index.html (depth 0 — already correct but run anyway)
 fixPaths(path.join(OUT, 'index.html'), 0);
+
+// Fix all routed copies of non-root HTML files too
+const allHtmlInPublic = [];
+function findHtml(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) findHtml(full);
+        else if (entry.name.endsWith('.html')) allHtmlInPublic.push(full);
+    }
+}
+findHtml(OUT);
+for (const f of allHtmlInPublic) {
+    fixPaths(f, 0);
+}
+
+// Fix CSS font paths
+const cssPath = path.join(OUT, 'css', 'amazon.css');
+if (fs.existsSync(cssPath)) {
+    let css = fs.readFileSync(cssPath, 'utf8');
+    css = css.replace(/url\("\/fonts\//g, `url("${BASE}/fonts/`);
+    fs.writeFileSync(cssPath, css, 'utf8');
+}
 
 // Fix URLs in shared.js (the CONST.urls object)
 const sharedJsPath = path.join(OUT, 'js', 'shared.js');
