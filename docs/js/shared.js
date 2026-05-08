@@ -47,7 +47,8 @@
             orders: '/ring-installation-a.com/gp/your-account/order-history',
             orderDetails: '/ring-installation-a.com/gp/your-account/order-details',
             invoice: '/ring-installation-a.com/gp/your-account/order-details/invoice',
-            cancel: '/ring-installation-a.com/gp/help/customer/cancel-items'
+            cancel: '/ring-installation-a.com/gp/help/customer/cancel-items',
+            installPdp: '/ring-installation-a.com/dp/B09INSTALL1'
         }
     };
 

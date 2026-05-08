@@ -32,7 +32,8 @@ const ROUTES = {
     '/gp/your-account/order-history': 'orders.html',
     '/gp/your-account/order-details': 'order-details.html',
     '/gp/your-account/order-details/invoice': 'invoice.html',
-    '/gp/help/customer/cancel-items': 'cancellation.html'
+    '/gp/help/customer/cancel-items': 'cancellation.html',
+    '/dp/B09INSTALL1': 'install-detail.html'
 };
 
 const server = http.createServer((req, res) => {

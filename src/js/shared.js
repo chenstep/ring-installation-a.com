@@ -47,7 +47,8 @@
             orders: '/gp/your-account/order-history',
             orderDetails: '/gp/your-account/order-details',
             invoice: '/gp/your-account/order-details/invoice',
-            cancel: '/gp/help/customer/cancel-items'
+            cancel: '/gp/help/customer/cancel-items',
+            installPdp: '/dp/B09INSTALL1'
         }
     };
 
