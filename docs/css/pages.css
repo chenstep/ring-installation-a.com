@@ -1537,3 +1537,131 @@ body.has-sticky-cta { padding-bottom: 90px; }
     margin: 0;
     font-weight: 400;
 }
+
+/* ---------- Cancellation Page ---------- */
+.cancel-page {
+    padding: 0 14px;
+}
+.cancel-page-header {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--c-text);
+    padding: 16px 0 12px;
+    border-bottom: 1px solid var(--c-divider);
+    margin-bottom: 16px;
+}
+.cancel-section {
+    margin-bottom: 20px;
+}
+.cancel-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin: 0 0 12px;
+}
+.cancel-reason-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f2f2;
+    font-size: 14px;
+    color: var(--c-text);
+    cursor: pointer;
+}
+.cancel-reason-row input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #007185;
+    flex: 0 0 18px;
+}
+.cancel-warning-box {
+    background: #FFF8E7;
+    border: 1px solid #FFC400;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 16px;
+}
+.cancel-warning-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 8px;
+}
+.cancel-warning-list {
+    list-style: disc;
+    padding-left: 18px;
+    margin: 0;
+    font-size: 13px;
+    color: var(--c-text);
+    line-height: 1.6;
+}
+.cancel-btn-destructive {
+    background: #FFD814 !important;
+    border-color: #FCD200 !important;
+    margin-bottom: 10px;
+}
+.btn-secondary-pill {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #888c8c;
+    border-radius: 100px;
+    background: #fff;
+    font-size: 14px;
+    color: var(--c-text);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+.cancel-success-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--c-divider);
+    margin-bottom: 16px;
+}
+.cancel-success-banner span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #067D62;
+}
+.cancel-refund-msg {
+    font-size: 14px;
+    color: var(--c-text);
+    line-height: 1.5;
+    margin: 0 0 12px;
+}
+.cancel-device-note {
+    font-size: 14px;
+    color: var(--c-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+.cancel-self-install-card {
+    background: #F7F7F7;
+    border-radius: 8px;
+    padding: 14px !important;
+}
+.cancel-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--c-text);
+    margin-bottom: 8px;
+}
+.cancel-card-body {
+    font-size: 13px;
+    color: var(--c-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+.cancel-card-link {
+    font-size: 14px;
+    color: var(--c-link);
+    text-decoration: none;
+}
+.cancel-return-btn {
+    margin-top: 8px;
+}

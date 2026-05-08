@@ -139,7 +139,7 @@
             document.getElementById('invoice-fulfillment-type').textContent = 'Email delivery';
             document.getElementById('order-num').textContent = Ring.CONST.order.installNumber;
             document.getElementById('invoice-item-name').textContent = 'Professional Installation by HelloTech (' + (sizeLabels[state.install.cameras || state.device.size] || '1 Camera') + ')';
-            document.getElementById('invoice-item-img').src = 'assets/hellotech-logo.png';
+            document.getElementById('invoice-item-img').src = Ring.CONST.install.logo;
             document.getElementById('invoice-item-img').alt = 'HelloTech';
             document.getElementById('invoice-seller-link').textContent = 'HelloTech, Inc.';
 

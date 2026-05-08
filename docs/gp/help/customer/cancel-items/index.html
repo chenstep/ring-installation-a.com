@@ -1,124 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cancel Installation - Amazon.com</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23232f3e'/><path d='M6 22c4 3 10 4 16 1' stroke='%23ff9900' stroke-width='2.5' fill='none' stroke-linecap='round'/><path d='M19 18l3.5 5.5L26 20' stroke='%23ff9900' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2, minimum-scale=1, shrink-to-fit=no">
+<title>Cancel Installation - Amazon.com</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23232f3e'/><path d='M6 22c4 3 10 4 16 1' stroke='%23ff9900' stroke-width='2.5' fill='none' stroke-linecap='round'/><path d='M19 18l3.5 5.5L26 20' stroke='%23ff9900' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <link rel="stylesheet" href="/ring-installation-a.com/css/amazon.css">
+<link rel="stylesheet" href="/ring-installation-a.com/css/pages.css">
 </head>
 <body>
 
-<!-- Prototype Navigation -->
-<div class="prototype-banner">⚡ PROTOTYPE — Ring Professional Installation Service</div>
-<div class="prototype-nav">
-    <a href="/ring-installation-a.com/dp/B0F67KWWQH">1. PDP</a>
-    <a href="/ring-installation-a.com/gp/cart/upsell">2. Upsell</a>
-    <a href="/ring-installation-a.com/gp/cart/view.html">3. Cart</a>
-    <a href="/ring-installation-a.com/gp/buy/spc/handlers/display.html">4. Checkout</a>
-    <a href="/ring-installation-a.com/gp/buy/thankyou">5. Confirm</a>
-    <a href="/ring-installation-a.com/gp/your-account/order-history">6. Orders</a>
-    <a href="/ring-installation-a.com/gp/help/customer/cancel-items" class="active">7. Cancel</a>
-</div>
+<div id="header-host"></div>
 
-<!-- Amazon Mobile Header -->
-<header class="amazon-header">
-    <div class="amazon-logo-mobile">a<span>mazon</span></div>
-    <input type="text" class="mobile-search" placeholder="🔍 Search Amazon" readonly>
-    <div class="mobile-cart">
-        🛒
-        <span class="mobile-cart-count">0</span>
-    </div>
-</header>
-
-<div class="cancellation-page" id="cancel-flow">
-    <div class="cancel-header">Cancel Installation Service</div>
+<!-- Cancel Flow -->
+<div class="cancel-page" id="cancel-flow">
+    <div class="cancel-page-header">Cancel Installation Service</div>
 
     <!-- Reason Selection -->
-    <div class="cancel-form">
-        <h3>Why would you like to cancel?</h3>
-        <label class="cancel-reason">
+    <div class="cancel-section">
+        <h3 class="cancel-section-title">Why would you like to cancel?</h3>
+        <label class="cancel-reason-row">
             <input type="radio" name="cancel-reason" value="self-install">
-            I'll install it myself
+            <span>I'll install it myself</span>
         </label>
-        <label class="cancel-reason">
+        <label class="cancel-reason-row">
             <input type="radio" name="cancel-reason" value="cost">
-            Too expensive
+            <span>Too expensive</span>
         </label>
-        <label class="cancel-reason">
+        <label class="cancel-reason-row">
             <input type="radio" name="cancel-reason" value="timing">
-            Scheduling doesn't work for me
+            <span>Scheduling doesn't work for me</span>
         </label>
-        <label class="cancel-reason">
+        <label class="cancel-reason-row">
             <input type="radio" name="cancel-reason" value="not-needed">
-            No longer need the device
+            <span>No longer need the device</span>
         </label>
-        <label class="cancel-reason">
+        <label class="cancel-reason-row">
             <input type="radio" name="cancel-reason" value="other">
-            Other reason
+            <span>Other reason</span>
         </label>
     </div>
 
     <!-- Warning & Confirmation -->
-    <div class="cancel-confirmation">
-        <div class="cancel-warning">
-            <div class="cancel-warning-title">
-                ⚠️ Before you cancel
-            </div>
-            <div class="cancel-warning-text">
-                • You'll lose your scheduled appointment (Fri, May 9)<br>
-                • Re-booking may have a longer wait time<br>
-                • Full refund of $129.99 within 3-5 business days<br>
-                • Your Ring device order is NOT affected
-            </div>
+    <div class="cancel-section">
+        <div class="cancel-warning-box">
+            <div class="cancel-warning-title">Before you cancel</div>
+            <ul class="cancel-warning-list">
+                <li>You'll lose your scheduled appointment (Fri, May 9)</li>
+                <li>Re-booking may have a longer wait time</li>
+                <li id="refund-amount-text">Full refund of <span id="refund-amount">$129.00</span> within 3-5 business days</li>
+                <li>Your Ring device order is NOT affected</li>
+            </ul>
         </div>
 
-        <button class="btn-confirm-cancel" id="btn-confirm-cancel">
-            Cancel installation — Refund $129.99
+        <button class="btn-primary-pill cancel-btn-destructive" id="btn-confirm-cancel">
+            Cancel installation — Refund <span id="refund-btn-amount">$129.00</span>
         </button>
-        <button class="btn-keep-installation" onclick="window.location.href='/ring-installation-a.com/gp/your-account/order-history'">
+        <button class="btn-secondary-pill" id="btn-keep">
             Keep my installation
         </button>
     </div>
 </div>
 
 <!-- Cancellation Success (shown after confirm) -->
-<div class="cancellation-page" id="cancel-success" style="display: none;">
-    <div class="cancel-header">Installation Cancelled</div>
-    
-    <div class="cancel-success" style="display: block;">
-        <div class="cancel-success-icon">✓</div>
-        <h3>Installation cancelled</h3>
-        <p>
-            Your refund of <strong>$129.99</strong> will be processed within 3-5 business days to your Visa ending in 4242.
+<div class="cancel-page" id="cancel-success" style="display: none;">
+    <div class="cancel-success-banner">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#067D62"/><path d="M8 12.5l2.5 2.5L16 9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Installation cancelled</span>
+    </div>
+
+    <div class="cancel-section">
+        <p class="cancel-refund-msg">
+            Your refund of <strong id="success-refund-amount">$129.00</strong> will be processed within 3-5 business days to your Visa ending in 0000.
         </p>
-        <p style="margin-bottom: 20px;">
+        <p class="cancel-device-note">
             Your Ring Floodlight Cam order is still on its way — arriving Wednesday, May 7.
         </p>
+    </div>
 
-        <div style="background: #F7F7F7; border-radius: 8px; padding: 14px; margin: 0 12px 14px; text-align: left;">
-            <div style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">Want to install it yourself?</div>
-            <div style="font-size: 13px; color: #565959; line-height: 1.5;">
-                The Ring Floodlight Cam comes with everything you need for self-installation. We'll include setup instructions with your delivery.
-            </div>
-            <button class="btn-self-install" style="margin-top: 10px;" onclick="window.location.href='/ring-installation-a.com/dp/B0F67KWWQH'">
-                View self-install guide
-            </button>
+    <div class="cancel-section cancel-self-install-card">
+        <div class="cancel-card-title">Want to install it yourself?</div>
+        <div class="cancel-card-body">
+            The Ring Floodlight Cam comes with everything you need for self-installation. We'll include setup instructions with your delivery.
         </div>
+        <a href="/ring-installation-a.com/dp/B0F67KWWQH" class="cancel-card-link">View self-install guide</a>
+    </div>
 
-        <button class="btn-view-order" onclick="window.location.href='/ring-installation-a.com/gp/your-account/order-history'" style="width: calc(100% - 24px);">
-            Return to Your Orders
-        </button>
+    <div class="cancel-section">
+        <a href="/ring-installation-a.com/gp/your-account/order-history" class="btn-secondary-pill cancel-return-btn">Return to Your Orders</a>
     </div>
 </div>
 
+<script src="/ring-installation-a.com/js/shared.js"></script>
 <script>
-// Cancel button interaction
-document.getElementById('btn-confirm-cancel').addEventListener('click', function() {
-    document.getElementById('cancel-flow').style.display = 'none';
-    document.getElementById('cancel-success').style.display = 'block';
-});
+(function () {
+    var state = Ring.readState();
+    Ring.renderHeader('#header-host', { cartCount: 0 });
+
+    // Populate dynamic refund amount from state
+    var refundPrice = Ring.fmt(state.install.price || 129);
+    var refundAmountEl = document.getElementById('refund-amount');
+    var refundBtnEl = document.getElementById('refund-btn-amount');
+    var successRefundEl = document.getElementById('success-refund-amount');
+    if (refundAmountEl) refundAmountEl.textContent = refundPrice;
+    if (refundBtnEl) refundBtnEl.textContent = refundPrice;
+    if (successRefundEl) successRefundEl.textContent = refundPrice;
+
+    // Cancel button interaction
+    document.getElementById('btn-confirm-cancel').addEventListener('click', function () {
+        document.getElementById('cancel-flow').style.display = 'none';
+        document.getElementById('cancel-success').style.display = 'block';
+        // Clear install from state
+        state.install.selected = false;
+        Ring.writeState(state);
+    });
+
+    // Keep button
+    document.getElementById('btn-keep').addEventListener('click', function () {
+        window.location.href = Ring.CONST.urls.orders;
+    });
+})();
 </script>
-<script src="/ring-installation-a.com/js/app.js"></script>
 </body>
 </html>
