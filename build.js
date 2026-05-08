@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 const SRC = path.join(__dirname, 'src');
-const OUT = path.join(__dirname, 'public');
+const OUT = path.join(__dirname, 'docs');
 
 const ROUTES = {
     'dp/B0F67KWWQH': 'index.html',
