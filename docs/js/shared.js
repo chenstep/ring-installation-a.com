@@ -48,7 +48,8 @@
             orderDetails: '/ring-installation-a.com/gp/your-account/order-details',
             invoice: '/ring-installation-a.com/gp/your-account/order-details/invoice',
             cancel: '/ring-installation-a.com/gp/help/customer/cancel-items',
-            installPdp: '/ring-installation-a.com/dp/B09INSTALL1'
+            installPdp: '/ring-installation-a.com/dp/B09INSTALL1',
+            bundlePdp: '/ring-installation-a.com/dp/B0BRS9FLVL'
         }
     };
 
@@ -157,18 +158,27 @@
         ].join('');
     }
 
-    // ---------- restart button (outside mobile viewport) ----------
-    function renderRestartBtn() {
+    // ---------- demo controls (outside mobile viewport) ----------
+    function renderDemoControls() {
         if (window.innerWidth <= 414) return;
-        var btn = document.createElement('div');
-        btn.innerHTML = '<button id="proto-restart" style="position:fixed;top:20px;left:calc(50% + 230px);z-index:9999;background:#cc0c39;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,0.2);">Restart Demo</button>';
-        document.body.appendChild(btn);
+        var panel = document.createElement('div');
+        panel.innerHTML = [
+            '<div style="position:fixed;top:20px;left:calc(50% + 230px);z-index:9999;display:flex;flex-direction:column;gap:8px;">',
+            '  <button id="proto-restart" style="background:#cc0c39;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,0.2);">Restart Demo</button>',
+            '  <div style="background:#fff;border:1px solid #d5d9d9;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1);font-family:inherit;">',
+            '    <div style="font-size:11px;font-weight:700;color:#565959;margin-bottom:8px;text-transform:uppercase;">Switch Prototype</div>',
+            '    <a href="' + CONST.urls.pdp + '" style="display:block;font-size:13px;color:#0F1111;text-decoration:none;padding:6px 0;border-bottom:1px solid #f0f2f2;" onclick="Ring.clearState()">Ring Floodlight Cam Pro</a>',
+            '    <a href="' + CONST.urls.bundlePdp + '" style="display:block;font-size:13px;color:#0F1111;text-decoration:none;padding:6px 0;" onclick="Ring.clearState()">Ring Floodlight + Indoor Cam Bundle</a>',
+            '  </div>',
+            '</div>'
+        ].join('');
+        document.body.appendChild(panel);
         document.getElementById('proto-restart').addEventListener('click', function() {
             clearState();
             window.location.href = CONST.urls.pdp;
         });
     }
-    document.addEventListener('DOMContentLoaded', renderRestartBtn);
+    document.addEventListener('DOMContentLoaded', renderDemoControls);
 
     // expose
     window.Ring = {

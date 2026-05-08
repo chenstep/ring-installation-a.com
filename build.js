@@ -18,7 +18,8 @@ const ROUTES = {
     'gp/your-account/order-details': 'order-details.html',
     'gp/your-account/order-details/invoice': 'invoice.html',
     'gp/help/customer/cancel-items': 'cancellation.html',
-    'dp/B09INSTALL1': 'install-detail.html'
+    'dp/B09INSTALL1': 'install-detail.html',
+    'dp/B0BRS9FLVL': 'bundle-pdp.html'
 };
 
 function mkdirp(dir) {

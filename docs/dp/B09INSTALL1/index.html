@@ -35,7 +35,7 @@
 }
 .install-title {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 400;
     color: #0F1111;
     line-height: 24px;
     margin-bottom: 4px;
@@ -62,6 +62,10 @@
     vertical-align: super;
     position: relative;
     top: -8px;
+}
+.install-price .price-decimal {
+    font-size: 28px;
+    font-weight: 400;
 }
 .install-price .price-frac {
     font-size: 13px;
@@ -274,7 +278,7 @@
 
     <!-- Price -->
     <div class="install-price-section">
-        <span class="install-price"><span class="price-symbol">$</span><span id="install-price-whole">129</span><span class="price-frac">00</span></span>
+        <span class="install-price"><span class="price-symbol">$</span><span id="install-price-whole">129</span><span class="price-decimal">.</span><span class="price-frac">00</span></span>
     </div>
     <div class="install-delivery-type">E-mail delivery</div>
 
@@ -377,7 +381,7 @@
         const whole = Math.floor(price);
         const frac = Math.round((price - whole) * 100).toString().padStart(2, '0');
         priceEl.textContent = whole;
-        priceEl.nextElementSibling.textContent = frac;
+        document.querySelector('.price-frac').textContent = frac;
         titleEl.textContent = 'Professional Installation by HelloTech (' + sizeLabels[selectedSize] + ')';
 
         tiles.forEach(t => {
