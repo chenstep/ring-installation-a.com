@@ -793,7 +793,9 @@
     width: 100%;
     background: none;
     border: none;
-    padding: 0;
+    border-bottom: 1px solid #d5d9d9;
+    padding: 0 0 12px;
+    margin-bottom: 12px;
     cursor: pointer;
     font-family: inherit;
 }
@@ -804,7 +806,7 @@
     margin: 0;
 }
 .od-chevron {
-    font-size: 16px;
+    font-size: 22px;
     color: var(--c-text);
     transition: transform 0.2s;
     transform: rotate(90deg);

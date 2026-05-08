@@ -232,47 +232,10 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 
 ---
 
-## 4. Edge Cases & Error Handling
+## 4. Metrics & KPIs
 
-### 4.1 Quantity Synchronization
 
-| Scenario | Behavior |
-|----------|----------|
-| Device size changes on PDP | Installation checkbox is unchecked; customer must reconfirm installation selection |
-| Install quantity changes in cart/checkout | Independent of device quantity (user can adjust freely) |
-| Device deleted from cart | `device.quantity = 0`; installation remains visible if selected |
-| Installation deleted from cart | Installation deselected; device unaffected |
-| All items deleted from cart | Shows "Your Amazon Cart is empty" state |
-
-### 4.2 Device Count Mismatch
-
-| Scenario | Behavior |
-|----------|----------|
-| User selects 3-device pack but 1-device install in popover | Allowed: customer may already have some devices installed |
-| User changes device size after picking install count in popover | Installation checkbox is unchecked to avoid stale selection |
-| Missing installation count field | Falls back to device size as default |
-
-### 4.3 Cancellation Mid-Flow
-
-| Scenario | Behavior |
-|----------|----------|
-| User confirms cancellation | Shows success view, marks installation as cancelled |
-| User clicks "Keep my installation" | Navigates to order history without changes |
-| User navigates away without confirming | No change (cancellation not processed) |
-
-### 4.4 State Corruption / Missing Data
-
-| Scenario | Behavior |
-|----------|----------|
-| Storage is empty or inaccessible | Returns default state (1 device, install not selected, $129.00) |
-| Partial state object | Fills missing fields from defaults |
-| Cart accessed without prior PDP visit | Shows "Your Amazon Cart is empty" state |
-
----
-
-## 5. Metrics & KPIs
-
-### 5.1 Primary Metrics
+### 4.1 Primary Metrics
 
 | Metric | Definition |
 |--------|------------|
@@ -280,7 +243,7 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 | **PDP Widget Engagement** | (Popover opens + checkbox toggles) / (PDP page views) |
 | **Upsell Conversion Rate** | (Installation added from cart-upsell interstitial) / (Cart-upsell impressions) |
 
-### 5.2 Revenue Metrics
+### 4.2 Revenue Metrics
 
 | Metric | Definition |
 |--------|------------|
@@ -288,16 +251,15 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 | **Install Revenue per PDP View** | (Total installation revenue) / (PDP views) |
 | **Multi-Device Tier Adoption** | % of install orders at 2-device or 3-device tier |
 
-### 5.3 Funnel Health
+### 4.3 Funnel Health
 
 | Metric | Definition |
 |--------|------------|
 | **Installation Cancellation Rate** | (Cancelled installs) / (Purchased installs) |
 | **Scheduling Completion Rate** | (Installations completed) / (Installations purchased) |
 | **Checkout Drop-off (install selected)** | (Checkout started with install) / (Orders placed with install) |
-| **Cart Removal Rate** | (Install deleted from cart) / (Install in cart sessions) |
 
-### 5.4 Customer Satisfaction
+### 4.4 Customer Satisfaction
 
 | Metric | Definition |
 |--------|------------|
@@ -307,9 +269,9 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 
 ---
 
-## 6. Engineering Manager Audit
+## 5. Engineering Manager Audit
 
-### 6.1 Ambiguities & Missing Specs
+### 5.1 Ambiguities & Missing Specs
 
 | # | Issue | Risk | Recommendation |
 |---|-------|------|----------------|
@@ -322,7 +284,7 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 | 7 | **No price validation** — if HelloTech raises prices between PDP visit and checkout, stale prices could be used. | Medium | Validate price server-side at checkout |
 | 8 | **Electrical licensing scope** — installation requires licensed electricians in many jurisdictions. Who is responsible for compliance — HelloTech or Amazon? | High | Confirm HelloTech handles all state-level licensing and permits |
 
-### 6.2 Potential Pitfalls
+### 5.2 Potential Pitfalls
 
 | # | Pitfall | Impact |
 |---|---------|--------|
@@ -332,7 +294,7 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 | 4 | **No A/B testing framework** — how do we measure the upsell interstitial vs. no interstitial? | Integrate with Amazon's experimentation platform |
 | 5 | **Service availability gaps** — if HelloTech cannot serve a region, showing the widget creates broken expectations | Gate widget display on ZIP-code eligibility check |
 
-### 6.3 Dependencies
+### 5.3 Dependencies
 
 | Dependency | Owner | Status |
 |------------|-------|--------|
@@ -345,7 +307,7 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 
 ---
 
-## 7. Review Checklist for Product Manager
+## 6. Review Checklist for Product Manager
 
 Before sharing this BRD with stakeholders, verify the following:
 
