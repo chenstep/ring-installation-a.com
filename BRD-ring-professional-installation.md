@@ -144,7 +144,8 @@ Professional Installation offered on Amazon.com — a service that enables custo
 | 3 | Installation appears in a separate "Email delivery" section with HelloTech logo, price, device count, and "Ships from HelloTech, Inc. / Sold by HelloTech, Inc." |
 | 4 | Installation quantity stepper shows trash icon at qty=1 for removal |
 | 5 | Removing installation from checkout updates all totals immediately without page reload |
-| 6 | "Place your order" navigates to thank-you page |
+| 6 | Terms and conditions text displayed below the "Place your order" CTA: "Professional Installation is provided by HelloTech, Inc. By placing your order you agree to HelloTech's [Terms of Service](https://www.hellotech.com/tos)." |
+| 7 | "Place your order" navigates to thank-you page |
 
 ---
 
@@ -198,17 +199,24 @@ Professional Installation offered on Amazon.com — a service that enables custo
 
 ---
 
-## 3. Technical Requirements
+## 3. Pricing and Tax
 
 ### 3.1 Installation Pricing
 
-#### Installation Pricing (per device count)
+#### Ring Camera Installation (per SKU)
 
-| Devices | Price | Discount vs. Linear |
-|---------|-------|---------------------|
-| 1 Device | $129.00 | -- |
-| 2 Devices | $248.00 | $10.00 off ($258) |
-| 3 Devices | $349.00 | $38.00 off ($387) |
+| SKU | Price |
+|-----|-------|
+| 1 Camera | $129.00 |
+| 2 Cameras | $248.00 |
+| 3 Cameras | $349.00 |
+
+#### Ring Doorbell Installation (per SKU) — *Placeholder*
+
+| SKU | Price |
+|-----|-------|
+| 1 Doorbell | $80.00 |
+| 2 Doorbells | $140.00 |
 
 ### 3.2 State Tax Requirements
 
