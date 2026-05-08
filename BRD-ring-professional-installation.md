@@ -168,8 +168,8 @@ Professional Installation offered on Amazon.com — a service that enables custo
 ### US-09: Order History & Order Details
 
 **As a** customer reviewing past orders,  
-**I want to** see the installation service as a trackable order,  
-**So that** I can monitor scheduling progress.
+**I want to** see the installation service in my order history,  
+**So that** I can access details and manage my order.
 
 **Acceptance Criteria:**
 | # | Criterion |
@@ -177,10 +177,11 @@ Professional Installation offered on Amazon.com — a service that enables custo
 | 1 | Orders page shows two purchase history cards: installation (first) and device (second) |
 | 2 | Installation card shows HelloTech logo, title with device count, sub-text "Scheduling sent by e-mail once order ships" |
 | 3 | Device card shows product image, short name, estimated arrival date |
-| 4 | Order details page for installation shows: heading "Email delivery", HelloTech logo, item title, "Sold by: HelloTech, Inc.", price, and "Buy it again" button (no progress tracker — follows existing Amazon service order pattern) |
-| 5 | Order details page for device shows: heading "Delivery", product image, standard milestones: Ordered > Shipped > Out for delivery > Delivered |
-| 6 | Order summary on details page shows per-item subtotal, tax, and grand total |
-| 7 | Action list includes "Cancel items" link |
+| 4 | Order details page for installation shows: "Email delivery" heading, HelloTech logo, item title, "Sold by: HelloTech, Inc.", price, and "Buy it again" button. No progress tracker — follows existing Amazon email delivery/service order pattern |
+| 5 | Order details page for device shows: "Delivery" heading, product image, progress tracker (Ordered > Shipped > Out for delivery > Delivered) |
+| 6 | Order summary shows: order placed date, order number, item subtotal, shipping ($0.00), tax, and grand total |
+| 7 | Payment method card shows card type and last 4 digits |
+| 8 | Action pills include: "Problem with order", "Cancel items", "Write a product review", "Buy it again" |
 
 ---
 
@@ -277,33 +278,19 @@ Installation services are subject to state-level sales tax. Tax calculation requ
 |--------|------------|
 | **Device Conversion Rate** | (Device orders) / (PDP views) — must not regress |
 | **Install Attach Rate** | (Orders with installation) / (Device orders in treatment) |
-| **Revenue per PDP View** | (Total revenue incl. install) / (PDP views) |
 
 #### Secondary Metrics (monitors for harm)
 
 | Metric | Definition |
 |--------|------------|
 | **Add-to-Cart Rate** | (ATC clicks) / (PDP views) — widget must not reduce ATC |
-| **PDP Bounce Rate** | (Single-page sessions) / (PDP views) — widget must not increase exits |
-| **Time to ATC** | Median seconds from PDP load to ATC click — must not increase significantly |
 | **Checkout Abandonment** | (Checkout starts) / (Orders placed) — monitor for install-related friction |
-| **Page Load Performance** | P50/P90 LCP — widget JS must not degrade page speed |
 
-#### Guardrail Metrics (auto-rollback triggers)
+#### Guardrail
 
-| Metric | Threshold |
-|--------|-----------|
-| Device conversion rate regression | >2% relative decline |
-| PDP bounce rate increase | >1% absolute increase |
-| Checkout abandonment increase | >1.5% absolute increase |
-
-#### Segmentation Dimensions
-
-- Device category (cameras vs. doorbells vs. accessories)
-- Device price tier (single vs. multi-pack)
-- Customer segment (Prime vs. non-Prime)
-- Geography (metro vs. non-metro)
-- New vs. returning Ring customers
+| Metric | Requirement |
+|--------|-------------|
+| Latency | No additional latency introduced by the widget |
 
 ---
 
