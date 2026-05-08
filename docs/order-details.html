@@ -244,10 +244,16 @@
             document.getElementById('device-tax').textContent = deviceTax.toFixed(2);
             document.getElementById('device-total').textContent = (deviceSub + deviceTax).toFixed(2);
         } else {
-            document.getElementById('od-delivery-type').textContent = 'Scheduling';
+            document.getElementById('od-delivery-type').textContent = 'Email delivery';
             document.getElementById('order-num').textContent = Ring.CONST.order.installNumber;
             document.getElementById('od-tracker-img').src = Ring.CONST.install.logo;
             document.getElementById('od-tracker-img').alt = 'HelloTech';
+
+            // Hide progress tracker for install (services use "Email delivery" pattern)
+            var progressTracker = document.querySelector('.od-progress-tracker');
+            if (progressTracker) progressTracker.style.display = 'none';
+            var trackerActions = document.querySelector('.od-tracker-actions');
+            if (trackerActions) trackerActions.style.display = 'none';
 
             var odName = document.getElementById('od-device-name');
             if (odName) odName.textContent = 'Professional Installation by HelloTech (' + (sizeLabels[state.install.cameras || state.device.size] || '1 Camera') + ')';
@@ -267,15 +273,6 @@
             document.getElementById('device-pretax').textContent = installSub.toFixed(2);
             document.getElementById('device-tax').textContent = installTax.toFixed(2);
             document.getElementById('device-total').textContent = (installSub + installTax).toFixed(2);
-
-            // Change milestones for scheduling
-            var milestones = document.querySelectorAll('.od-milestone-label');
-            if (milestones.length >= 4) {
-                milestones[0].textContent = 'Ordered';
-                milestones[1].textContent = 'Confirmed';
-                milestones[2].textContent = 'Scheduled';
-                milestones[3].textContent = 'Completed';
-            }
         }
 
         var invoiceLink = document.getElementById('invoice-link');

@@ -19,7 +19,7 @@ Professional Installation offered on Amazon.com — a service that enables custo
 ### For Whom
 - Amazon customers purchasing Ring products on Amazon.com.
 - Specifically targets customers who lack DIY confidence for electrical wiring and outdoor mounting tasks, or who are unaware of local licensing requirements for electrical work.
-- The service covers multiple device categories and sizes: Ring cameras, doorbells, and accessories including bundles (1-device, 2-device, and 3-device configurations).
+- The service covers multiple device category packs: Ring cameras (single, multi-pack), doorbells (single, multi-pack), and accessories — each with configurable installation tiers mapped to the device ASIN.
 
 ---
 
@@ -39,6 +39,7 @@ Professional Installation offered on Amazon.com — a service that enables custo
 | 3 | Price is displayed inline (e.g., "$129.00") and updates when the device size changes |
 | 4 | A chevron (>) on the row opens a detail popover/bottom sheet |
 | 5 | A "Terms of Service" link to https://www.hellotech.com/tos is visible below the row |
+| 6 | Widget visibility is gated by the customer's GLOW zip code; only displays if the zip is within HelloTech's serviceable area (zip list provided by HelloTech) |
 
 ---
 
@@ -53,7 +54,7 @@ Professional Installation offered on Amazon.com — a service that enables custo
 |---|-----------|
 | 1 | Tapping the row text or chevron opens a mobile takeover popover (role="dialog", aria-modal="true") |
 | 2 | Popover displays: title, "from HelloTech, Inc.", price, and a link to Terms of Service |
-| 3 | Popover includes a tile group (role="radiogroup") with options for 1 Device ($129.00), 2 Devices ($248.00), and 3 Devices ($349.00) |
+| 3 | Popover includes a tile group (role="radiogroup") with installation options; associated ASINs are configured and mapped to the parent device ASIN (e.g., 1 Device $129.00, 2 Devices $248.00, 3 Devices $349.00) |
 | 4 | The tile matching the current device size is pre-selected |
 | 5 | Selecting a different tile updates the popover price and title without changing the device size on the PDP |
 | 6 | A bullet list describes the service inclusions (device installation, removal, mounting/wiring, WiFi config, smart home integration, training) |
@@ -64,9 +65,9 @@ Professional Installation offered on Amazon.com — a service that enables custo
 
 ### US-03: Select Installation Count Independent of Device Size
 
-**As a** customer with an existing device already installed,  
+**As a** customer who wants a different installation count from the device pack I'm purchasing,  
 **I want to** choose an installation tier that differs from my device pack size,  
-**So that** I only pay for the devices I need installed.
+**So that** I only pay for the number of devices I need installed.
 
 **Acceptance Criteria:**
 | # | Criterion |
@@ -110,10 +111,10 @@ Professional Installation offered on Amazon.com — a service that enables custo
 
 ---
 
-### US-06: Cart with Installation Line Item
+### US-06: Installation Item Card in Cart
 
 **As a** customer with installation in my cart,  
-**I want to** see it as a separate line item with quantity controls,  
+**I want to** see the Installation Item Card as a separate line item,  
 **So that** I can review and adjust before checkout.
 
 **Acceptance Criteria:**
@@ -121,7 +122,7 @@ Professional Installation offered on Amazon.com — a service that enables custo
 |---|-----------|
 | 1 | Cart displays two item cards: device and installation (when selected) |
 | 2 | Installation card shows: HelloTech logo, title with device count, price, "Ships from and sold by HelloTech, Inc.", and Terms of Service link |
-| 3 | Both items have quantity steppers: trash icon at qty=1, minus at qty>1, plus button always visible |
+| 3 | Both items have quantity steppers: trash icon at qty=1, minus at qty>1, plus button always visible. Maximum quantity determined by checkout guardrails |
 | 4 | Subtotal at top of page sums device and installation prices |
 | 5 | "Proceed to checkout (N items)" button shows combined item count |
 | 6 | Deleting all items shows "Your Amazon Cart is empty" state with "continue shopping" link |
@@ -160,7 +161,6 @@ Professional Installation offered on Amazon.com — a service that enables custo
 | 2 | Shipping info shows delivery address |
 | 3 | Device block shows estimated delivery date with product image |
 | 4 | Installation block explains: "Scheduling for your Professional Installation will be sent by email once your order ships." with HelloTech logo |
-| 5 | If installation was NOT selected, the installation block is hidden |
 
 ---
 
@@ -176,7 +176,7 @@ Professional Installation offered on Amazon.com — a service that enables custo
 | 1 | Orders page shows two purchase history cards: installation (first) and device (second) |
 | 2 | Installation card shows HelloTech logo, title with device count, sub-text "Scheduling sent by e-mail once order ships" |
 | 3 | Device card shows product image, short name, estimated arrival date |
-| 4 | Order details page for installation shows: heading "Scheduling", HelloTech logo, progress tracker with milestones: Ordered > Confirmed > Scheduled > Completed |
+| 4 | Order details page for installation shows: heading "Email delivery", HelloTech logo, item title, "Sold by: HelloTech, Inc.", price, and "Buy it again" button (no progress tracker — follows existing Amazon service order pattern) |
 | 5 | Order details page for device shows: heading "Delivery", product image, standard milestones: Ordered > Shipped > Out for delivery > Delivered |
 | 6 | Order summary on details page shows per-item subtotal, tax, and grand total |
 | 7 | Action list includes "Cancel items" link |
@@ -192,13 +192,9 @@ Professional Installation offered on Amazon.com — a service that enables custo
 **Acceptance Criteria:**
 | # | Criterion |
 |---|-----------|
-| 1 | Cancel page header: "Cancel Installation Service" |
-| 2 | Reason selection with options: "I'll install it myself", "Too expensive", "Scheduling doesn't work for me", "No longer need the device", "Other reason" |
-| 3 | Warning box titled "Before you cancel" explaining: loss of appointment slot, re-booking may have longer wait, full refund timeline, and that the Ring device order is NOT affected |
-| 4 | Refund amount dynamically reflects the install price |
-| 5 | "Cancel installation - Refund $X" destructive button transitions to success view |
-| 6 | "Keep my installation" button navigates back to order history |
-| 7 | Success view shows: cancellation confirmation, refund message with payment method, note that device order is unaffected |
+| 1 | Cancellation and returns follow existing Amazon rules and processes — no custom flow required |
+| 2 | Refund amount reflects the install price paid |
+| 3 | Cancellation of installation does NOT affect the associated device order |
 
 ---
 
